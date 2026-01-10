@@ -1,0 +1,13 @@
+{
+  "type": "alchemy:container",
+  "id": "alchemy:keg",
+  "stack_size": 6,
+  "breakable": false,
+  "returns_container": true,
+  "rarity": "common",
+  "category": "containers",
+  "lore_key": "item.alchemy.keg.desc",
+  "tooltip_key": "item.alchemy.keg.tooltip",
+  "flavor_text_key": "item.alchemy.keg.flavor_text",
+  "crafting_instructions_key": "item.alchemy.keg.crafting_instructions"
+}

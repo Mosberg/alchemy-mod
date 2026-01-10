@@ -4,7 +4,7 @@
   "category": "beer",
   "container": "alchemy:aluminum_can",
   "rarity": "rare",
-  "stack_size": 12,
+  "stack_size": 24,
 
   "brew_time_seconds": 35,
   "brew_time_ticks": 700,
