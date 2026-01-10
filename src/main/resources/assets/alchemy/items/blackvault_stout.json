@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "alchemy:item/cans/blackvault_stout"
+    "model": "alchemy:item/beers/blackvault_stout"
   }
 }

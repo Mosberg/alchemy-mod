@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "alchemy:item/cans/emberhold_amber_ale"
+    "model": "alchemy:item/beers/emberhold_amber_ale"
   }
 }

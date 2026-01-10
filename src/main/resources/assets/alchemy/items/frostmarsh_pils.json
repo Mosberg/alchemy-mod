@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "alchemy:item/cans/frostmarsh_pils"
+    "model": "alchemy:item/beers/frostmarsh_pils"
   }
 }

@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "alchemy:item/cans/ropesend_dockside_brew"
+    "model": "alchemy:item/beers/ropesend_dockside_brew"
   }
 }

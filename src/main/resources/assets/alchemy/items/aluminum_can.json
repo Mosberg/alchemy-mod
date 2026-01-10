@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "alchemy:item/cans/aluminum_can"
+    "model": "alchemy:item/containers/aluminum_can"
   }
 }

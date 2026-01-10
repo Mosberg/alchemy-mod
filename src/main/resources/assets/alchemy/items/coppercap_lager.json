@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "alchemy:item/cans/coppercap_lager"
+    "model": "alchemy:item/beers/coppercap_lager"
   }
 }
