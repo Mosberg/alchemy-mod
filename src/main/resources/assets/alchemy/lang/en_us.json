@@ -1,4 +1,8 @@
 {
+  "itemGroup.alchemy.main": "Alchemy",
+
+  "comment.alchemy.containers": "Containers",
+
   "item.alchemy.aluminum_can": "Aluminum Can",
   "item.alchemy.aluminum_can.desc": "A lightweight can perfect for storing brewed beverages.",
   "item.alchemy.aluminum_can.tooltip": "Used to contain brewed drinks.",
@@ -6,6 +10,16 @@
   "item.alchemy.aluminum_can.category": "Category: Containers",
   "item.alchemy.aluminum_can.flavor_text": "Keeps your drink fresh and portable, whether you're exploring caves or climbing mountains.",
   "item.alchemy.aluminum_can.crafting_instructions": "Crafted using Aluminum Ingots at a Crafting Table.",
+
+  "item.alchemy.aluminum_keg": "Aluminum Keg",
+  "item.alchemy.aluminum_keg.desc": "A sturdy keg made of aluminum, ideal for storing large quantities of brewed beverages.",
+  "item.alchemy.aluminum_keg.tooltip": "Used to contain large amounts of brewed drinks.",
+  "item.alchemy.aluminum_keg.rarity": "Rarity: Common",
+  "item.alchemy.aluminum_keg.category": "Category: Containers",
+  "item.alchemy.aluminum_keg.flavor_text": "Perfect for parties or long journeys, this keg keeps your brew safe and ready to serve.",
+  "item.alchemy.aluminum_keg.crafting_instructions": "Crafted using Aluminum Ingots and Iron Bars at a Crafting Table.",
+
+  "comment.alchemy.beers": "Beers",
 
   "item.alchemy.coppercap_lager": "Coppercap Lager",
   "item.alchemy.coppercap_lager.desc": "A crisp lager with a faint metallic bite and a clean finish.",
@@ -109,7 +123,5 @@
   "item.alchemy.ropesend_dockside_brew.container": "Container: Aluminum Can",
   "item.alchemy.ropesend_dockside_brew.flavor_text": "Brewed for sailors and scavengers—cheap, cheerful, and oddly fortunate.",
   "item.alchemy.ropesend_dockside_brew.warning": "Warning: Excessive consumption may cause Nausea.",
-  "item.alchemy.ropesend_dockside_brew.crafting_instructions": "To brew Ropesend Dockside Brew, place the ingredients into a Fermenting Barrel and wait for the brew time to complete.",
-
-  "itemGroup.alchemy.main": "Alchemy"
+  "item.alchemy.ropesend_dockside_brew.crafting_instructions": "To brew Ropesend Dockside Brew, place the ingredients into a Fermenting Barrel and wait for the brew time to complete."
 }

@@ -1,0 +1,9 @@
+{
+  "type": "alchemy:equipment",
+  "id": "alchemy:aging_barrel",
+  "function": "aging",
+  "capacity": 9,
+  "aging_multiplier": 1.0,
+  "material": "wood",
+  "rarity": "uncommon"
+}

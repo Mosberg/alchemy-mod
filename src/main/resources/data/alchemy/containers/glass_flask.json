@@ -1,95 +1,82 @@
 {
   "type": "alchemy:container",
-  "id": "alchemy:aluminum_keg",
-  "container_kind": "keg",
+  "id": "alchemy:glass_flask",
+  "container_kind": "flask",
 
-  "stack_size": 6,
+  "stack_size": 16,
   "rarity": "common",
   "category": "containers",
 
   "durability": {
-    "breakable": false,
+    "breakable": true,
     "max_damage": 0,
     "fireproof": false,
-    "explosion_resistance": "medium"
+    "explosion_resistance": "low"
   },
 
   "liquid": {
     "can_contain_liquid": true,
-    "capacity_mb": 6000,
+    "capacity_mb": 250,
     "accepted_tags": [
       "alchemy:beverages",
-      "alchemy:beer",
-      "alchemy:cider",
-      "alchemy:spirit"
+      "alchemy:spirit",
+      "alchemy:liqueur",
+      "alchemy:potion_spirit"
     ],
+    "default_fill_mb": 250,
     "transfer": {
-      "fill_rate_mb_per_tick": 80,
-      "pour_rate_mb_per_tick": 60,
+      "fill_rate_mb_per_tick": 25,
+      "pour_rate_mb_per_tick": 25,
       "allow_partial": true
     }
   },
 
   "seal": {
-    "starts_sealed": true,
+    "starts_sealed": false,
     "reopenable": true,
-    "seal_quality": "sealed",
-    "leak_chance_per_minute_open": 0.002,
-    "oxidation_multiplier_open": 1.5,
+    "seal_quality": "stoppered",
+    "leak_chance_per_minute_open": 0.001,
+    "oxidation_multiplier_open": 1.75,
     "spoilage_multiplier_open": 1.25
   },
 
   "pressure": {
-    "supports_pressure": true,
-    "carbonation_style": "high",
-    "max_pressure": 1.2,
+    "supports_pressure": false,
+    "carbonation_style": "none",
+    "max_pressure": 0.0,
     "burst": {
-      "enabled": true,
-      "pressure_threshold": 1.1,
+      "enabled": false,
+      "pressure_threshold": 0.0,
       "drop_contents_on_burst": true,
-      "burst_sound": "minecraft:entity.generic.explode"
+      "burst_sound": "minecraft:entity.item.break"
     }
   },
 
   "temperature": {
-    "insulation_factor": 0.35,
+    "insulation_factor": 0.3,
     "preferred_serving": "cool",
     "freezing_safe": true,
-    "heat_safe": true
-  },
-
-  "keg_logic": {
-    "taps": {
-      "supports_tap": true,
-      "serving_mb": 250,
-      "serving_item": "alchemy:aluminum_can",
-      "requires_empty_container": true,
-      "tap_time_ticks": 10
-    },
-    "batch_quality": {
-      "stores_quality": true,
-      "quality_decay_per_day": 0.02,
-      "spoilage_risk_per_day_open": 0.05
-    }
+    "heat_safe": false
   },
 
   "interaction": {
-    "use_action": "place_or_tap",
+    "use_action": "drink",
     "returns_container": true,
-    "return_item_id": "alchemy:aluminum_keg",
-    "consume_on_use": false,
+    "return_item_id": "alchemy:glass_flask",
+    "consume_on_drink": false,
+
     "allow_fill_from": [
-      "alchemy:fermenting_barrel",
+      "alchemy:aluminum_keg",
       "alchemy:distillation_apparatus"
     ],
-    "allow_pour_to": ["alchemy:aluminum_can", "alchemy:glass_flask"]
+    "allow_pour_to": ["alchemy:aluminum_keg", "alchemy:wooden_barrel"]
   },
 
   "client": {
-    "render_mode": "item_with_fill_level",
+    "render_mode": "item_with_liquid_tint",
     "liquid_tint_from_content": true,
     "show_fill_level_tooltip": true,
-    "fill_level_steps": 12
+    "fill_level_steps": 5
   },
 
   "gates": {
@@ -98,10 +85,10 @@
   },
 
   "text": {
-    "lore_key": "item.alchemy.aluminum_keg.desc",
-    "tooltip_key": "item.alchemy.aluminum_keg.tooltip",
-    "flavor_text_key": "item.alchemy.aluminum_keg.flavor_text",
-    "crafting_instructions_key": "item.alchemy.aluminum_keg.crafting_instructions"
+    "lore_key": "item.alchemy.glass_flask.desc",
+    "tooltip_key": "item.alchemy.glass_flask.tooltip",
+    "flavor_text_key": "item.alchemy.glass_flask.flavor_text",
+    "crafting_instructions_key": "item.alchemy.glass_flask.crafting_instructions"
   },
 
   "state_storage": {
@@ -115,7 +102,7 @@
         "quality": 0.0,
         "temperature": "ambient",
         "pressure": 0.0,
-        "sealed": true,
+        "sealed": false,
         "created_time": 0
       }
     },
@@ -137,8 +124,8 @@
 
     "placed_block": {
       "enabled": true,
-      "block_id": "alchemy:placed_keg",
-      "block_entity_id": "alchemy:keg",
+      "block_id": "alchemy:placed_glass_flask",
+      "block_entity_id": "alchemy:placed_container",
       "sync_to_client": true,
       "drops_keep_contents": true
     },

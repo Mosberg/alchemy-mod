@@ -1,31 +1,41 @@
 {
   "type": "alchemy:container",
-  "id": "alchemy:aluminum_keg",
-  "container_kind": "keg",
+  "id": "alchemy:wooden_barrel",
+  "container_kind": "barrel",
 
-  "stack_size": 6,
-  "rarity": "common",
+  "stack_size": 1,
+  "rarity": "uncommon",
   "category": "containers",
 
   "durability": {
-    "breakable": false,
+    "breakable": true,
     "max_damage": 0,
     "fireproof": false,
     "explosion_resistance": "medium"
   },
 
+  "wood": {
+    "wood_type": "oak",
+    "supports_wood_variants": true,
+    "allowed_wood_types": ["oak", "spruce", "warped"],
+    "flavor_bias": "vanilla"
+  },
+
   "liquid": {
     "can_contain_liquid": true,
-    "capacity_mb": 6000,
+    "capacity_mb": 12000,
     "accepted_tags": [
       "alchemy:beverages",
       "alchemy:beer",
-      "alchemy:cider",
-      "alchemy:spirit"
+      "alchemy:wine",
+      "alchemy:mead",
+      "alchemy:spirit",
+      "alchemy:liqueur",
+      "alchemy:ageable"
     ],
     "transfer": {
-      "fill_rate_mb_per_tick": 80,
-      "pour_rate_mb_per_tick": 60,
+      "fill_rate_mb_per_tick": 60,
+      "pour_rate_mb_per_tick": 50,
       "allow_partial": true
     }
   },
@@ -33,63 +43,65 @@
   "seal": {
     "starts_sealed": true,
     "reopenable": true,
-    "seal_quality": "sealed",
-    "leak_chance_per_minute_open": 0.002,
-    "oxidation_multiplier_open": 1.5,
-    "spoilage_multiplier_open": 1.25
+    "seal_quality": "barreled",
+    "leak_chance_per_minute_open": 0.001,
+    "oxidation_multiplier_open": 1.25,
+    "spoilage_multiplier_open": 1.15
   },
 
   "pressure": {
     "supports_pressure": true,
-    "carbonation_style": "high",
-    "max_pressure": 1.2,
+    "carbonation_style": "low",
+    "max_pressure": 0.6,
     "burst": {
-      "enabled": true,
-      "pressure_threshold": 1.1,
+      "enabled": false,
+      "pressure_threshold": 0.0,
       "drop_contents_on_burst": true,
-      "burst_sound": "minecraft:entity.generic.explode"
+      "burst_sound": "minecraft:entity.item.break"
     }
   },
 
   "temperature": {
-    "insulation_factor": 0.35,
-    "preferred_serving": "cool",
-    "freezing_safe": true,
-    "heat_safe": true
+    "insulation_factor": 0.65,
+    "preferred_serving": "cellar",
+    "freezing_safe": false,
+    "heat_safe": false
   },
 
-  "keg_logic": {
-    "taps": {
-      "supports_tap": true,
-      "serving_mb": 250,
-      "serving_item": "alchemy:aluminum_can",
-      "requires_empty_container": true,
-      "tap_time_ticks": 10
-    },
-    "batch_quality": {
-      "stores_quality": true,
-      "quality_decay_per_day": 0.02,
-      "spoilage_risk_per_day_open": 0.05
+  "barrel_logic": {
+    "supports_aging": true,
+    "aging_multiplier": 1.0,
+    "quality_bonus_max": 2,
+    "spoilage_risk_base": 0.02,
+    "environment_modifiers": {
+      "enable_heat_speedup": true,
+      "enable_cold_quality_bonus": true
     }
   },
 
   "interaction": {
-    "use_action": "place_or_tap",
+    "use_action": "place_or_open",
     "returns_container": true,
-    "return_item_id": "alchemy:aluminum_keg",
+    "return_item_id": "alchemy:wooden_barrel",
     "consume_on_use": false,
+
     "allow_fill_from": [
+      "alchemy:aluminum_keg",
       "alchemy:fermenting_barrel",
       "alchemy:distillation_apparatus"
     ],
-    "allow_pour_to": ["alchemy:aluminum_can", "alchemy:glass_flask"]
+    "allow_pour_to": [
+      "alchemy:aluminum_keg",
+      "alchemy:aluminum_can",
+      "alchemy:glass_flask"
+    ]
   },
 
   "client": {
-    "render_mode": "item_with_fill_level",
+    "render_mode": "block_with_fill_level",
     "liquid_tint_from_content": true,
     "show_fill_level_tooltip": true,
-    "fill_level_steps": 12
+    "fill_level_steps": 16
   },
 
   "gates": {
@@ -98,10 +110,10 @@
   },
 
   "text": {
-    "lore_key": "item.alchemy.aluminum_keg.desc",
-    "tooltip_key": "item.alchemy.aluminum_keg.tooltip",
-    "flavor_text_key": "item.alchemy.aluminum_keg.flavor_text",
-    "crafting_instructions_key": "item.alchemy.aluminum_keg.crafting_instructions"
+    "lore_key": "item.alchemy.wooden_barrel.desc",
+    "tooltip_key": "item.alchemy.wooden_barrel.tooltip",
+    "flavor_text_key": "item.alchemy.wooden_barrel.flavor_text",
+    "crafting_instructions_key": "item.alchemy.wooden_barrel.crafting_instructions"
   },
 
   "state_storage": {
@@ -113,7 +125,7 @@
         "content_id": "",
         "amount_mb": 0,
         "quality": 0.0,
-        "temperature": "ambient",
+        "temperature": "cellar",
         "pressure": 0.0,
         "sealed": true,
         "created_time": 0
@@ -137,8 +149,8 @@
 
     "placed_block": {
       "enabled": true,
-      "block_id": "alchemy:placed_keg",
-      "block_entity_id": "alchemy:keg",
+      "block_id": "alchemy:wooden_barrel_block",
+      "block_entity_id": "alchemy:barrel",
       "sync_to_client": true,
       "drops_keep_contents": true
     },
