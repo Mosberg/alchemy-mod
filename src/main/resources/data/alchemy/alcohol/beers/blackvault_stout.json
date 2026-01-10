@@ -1,13 +1,81 @@
 {
   "type": "alchemy:alcohol",
+  "schema_version": 2,
+
   "id": "alchemy:blackvault_stout",
   "category": "beer",
+  "style": "stout",
+
   "container": "alchemy:aluminum_can",
   "rarity": "rare",
   "stack_size": 24,
 
-  "brew_time_seconds": 35,
-  "brew_time_ticks": 700,
+  "brewing": {
+    "brew_time_seconds": 35,
+    "brew_time_ticks": 700,
+    "station_tags": ["alchemy:fermentation_stations"],
+    "difficulty": 2,
+    "batch_size_servings": 8,
+    "byproducts": [{ "item": "minecraft:bucket", "count": 1, "chance": 1.0 }],
+    "failure": {
+      "enabled": true,
+      "base_fail_chance": 0.06,
+      "outcome": "alchemy:spoiled_beer",
+      "extra_effects": [
+        {
+          "effect": "minecraft:slowness",
+          "duration": 200,
+          "amplifier": 0,
+          "chance": 0.35
+        }
+      ]
+    }
+  },
+
+  "stats": {
+    "alcohol_by_volume": 8.2,
+    "strength": 0.44,
+    "intoxication": { "value": 0.28, "decay_rate_per_tick": 0.001 },
+    "nutrition": { "hunger": 2, "saturation": 0.18 }
+  },
+
+  "quality": {
+    "tier": "AGED",
+    "supports_quality": true,
+    "quality_on_brew": 0.7
+  },
+
+  "aging": {
+    "supported": true,
+    "min_days": 7,
+    "max_days": 60,
+    "preferred_container_tags": ["alchemy:barrels"],
+    "quality_bonus_per_day": 0.015,
+    "risk_per_day_open": 0.03
+  },
+
+  "spoilage": {
+    "enabled": true,
+    "base_decay_per_day": 0.018,
+    "opened_decay_multiplier": 1.45,
+    "temperature": {
+      "preferred": "cellar",
+      "hot_decay_multiplier": 1.6,
+      "cold_decay_multiplier": 0.85
+    }
+  },
+
+  "carbonation": {
+    "level": "low",
+    "foam": { "enabled": true, "spill_chance_on_open": 0.02 }
+  },
+
+  "visuals": {
+    "liquid_color": 2894632,
+    "bubbles": "light",
+    "glow": "none",
+    "particle": "minecraft:bubble"
+  },
 
   "effects": [
     {
@@ -31,16 +99,43 @@
     { "item": "alchemy:hops", "count": 1 }
   ],
 
-  "name_key": "item.alchemy.blackvault_stout",
-  "lore_key": "item.alchemy.blackvault_stout.desc",
-  "tooltip_key": "item.alchemy.blackvault_stout.tooltip",
-  "effect_text_key": "item.alchemy.blackvault_stout.effect",
-  "brew_time_text_key": "item.alchemy.blackvault_stout.brew_time",
-  "ingredients_text_key": "item.alchemy.blackvault_stout.ingredients",
-  "container_text_key": "item.alchemy.blackvault_stout.container",
-  "rarity_text_key": "item.alchemy.blackvault_stout.rarity",
-  "category_text_key": "item.alchemy.blackvault_stout.category",
-  "flavor_text_key": "item.alchemy.blackvault_stout.flavor_text",
-  "warning_key": "item.alchemy.blackvault_stout.warning",
-  "crafting_instructions_key": "item.alchemy.blackvault_stout.crafting_instructions"
+  "tags": [
+    "alchemy:alcoholic",
+    "alchemy:beer",
+    "alchemy:stout",
+    "alchemy:ageable",
+    "alchemy:can_served"
+  ],
+
+  "loot": {
+    "weight": 2,
+    "tables": ["alchemy:dungeon", "alchemy:stronghold", "alchemy:tavern_rare"]
+  },
+
+  "gates": {
+    "requires_feature_flag": "alchemy:liquids",
+    "requires_gamerule_true": "enableAlcoholEffects"
+  },
+
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true,
+    "show_spoilage_hint": true
+  },
+
+  "text": {
+    "name_key": "item.alchemy.blackvault_stout",
+    "lore_key": "item.alchemy.blackvault_stout.desc",
+    "tooltip_key": "item.alchemy.blackvault_stout.tooltip",
+    "effect_text_key": "item.alchemy.blackvault_stout.effect",
+    "brew_time_text_key": "item.alchemy.blackvault_stout.brew_time",
+    "ingredients_text_key": "item.alchemy.blackvault_stout.ingredients",
+    "container_text_key": "item.alchemy.blackvault_stout.container",
+    "rarity_text_key": "item.alchemy.blackvault_stout.rarity",
+    "category_text_key": "item.alchemy.blackvault_stout.category",
+    "flavor_text_key": "item.alchemy.blackvault_stout.flavor_text",
+    "warning_key": "item.alchemy.blackvault_stout.warning",
+    "crafting_instructions_key": "item.alchemy.blackvault_stout.crafting_instructions"
+  }
 }

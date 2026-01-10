@@ -1,13 +1,76 @@
 {
   "type": "alchemy:alcohol",
+  "schema_version": 2,
+
   "id": "alchemy:thornveil_herbal_ale",
   "category": "beer",
+  "style": "herbal_ale",
+
   "container": "alchemy:aluminum_can",
   "rarity": "uncommon",
   "stack_size": 24,
 
-  "brew_time_seconds": 30,
-  "brew_time_ticks": 600,
+  "brewing": {
+    "brew_time_seconds": 30,
+    "brew_time_ticks": 600,
+    "station_tags": ["alchemy:fermentation_stations"],
+    "difficulty": 1,
+    "batch_size_servings": 8,
+    "byproducts": [{ "item": "minecraft:bucket", "count": 1, "chance": 1.0 }],
+    "failure": {
+      "enabled": true,
+      "base_fail_chance": 0.04,
+      "outcome": "alchemy:spoiled_beer",
+      "extra_effects": [
+        {
+          "effect": "minecraft:poison",
+          "duration": 100,
+          "amplifier": 0,
+          "chance": 0.25
+        }
+      ]
+    }
+  },
+
+  "stats": {
+    "alcohol_by_volume": 5.8,
+    "strength": 0.3,
+    "intoxication": { "value": 0.2, "decay_rate_per_tick": 0.001 },
+    "nutrition": { "hunger": 1, "saturation": 0.1 }
+  },
+
+  "quality": {
+    "tier": "REFINED",
+    "supports_quality": true,
+    "quality_on_brew": 0.6
+  },
+
+  "aging": {
+    "supported": false
+  },
+
+  "spoilage": {
+    "enabled": true,
+    "base_decay_per_day": 0.022,
+    "opened_decay_multiplier": 1.7,
+    "temperature": {
+      "preferred": "cool",
+      "hot_decay_multiplier": 1.5,
+      "cold_decay_multiplier": 0.9
+    }
+  },
+
+  "carbonation": {
+    "level": "low",
+    "foam": { "enabled": true, "spill_chance_on_open": 0.02 }
+  },
+
+  "visuals": {
+    "liquid_color": 8623995,
+    "bubbles": "light",
+    "glow": "none",
+    "particle": "minecraft:bubble"
+  },
 
   "effects": [
     {
@@ -31,16 +94,42 @@
     { "item": "minecraft:dandelion", "count": 1 }
   ],
 
-  "name_key": "item.alchemy.thornveil_herbal_ale",
-  "lore_key": "item.alchemy.thornveil_herbal_ale.desc",
-  "tooltip_key": "item.alchemy.thornveil_herbal_ale.tooltip",
-  "effect_text_key": "item.alchemy.thornveil_herbal_ale.effect",
-  "brew_time_text_key": "item.alchemy.thornveil_herbal_ale.brew_time",
-  "ingredients_text_key": "item.alchemy.thornveil_herbal_ale.ingredients",
-  "container_text_key": "item.alchemy.thornveil_herbal_ale.container",
-  "rarity_text_key": "item.alchemy.thornveil_herbal_ale.rarity",
-  "category_text_key": "item.alchemy.thornveil_herbal_ale.category",
-  "flavor_text_key": "item.alchemy.thornveil_herbal_ale.flavor_text",
-  "warning_key": "item.alchemy.thornveil_herbal_ale.warning",
-  "crafting_instructions_key": "item.alchemy.thornveil_herbal_ale.crafting_instructions"
+  "tags": [
+    "alchemy:alcoholic",
+    "alchemy:beer",
+    "alchemy:herbal",
+    "alchemy:can_served"
+  ],
+
+  "loot": {
+    "weight": 5,
+    "tables": ["alchemy:forest", "alchemy:tavern"]
+  },
+
+  "gates": {
+    "requires_feature_flag": "alchemy:liquids",
+    "requires_gamerule_true": "enableAlcoholEffects"
+  },
+
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true,
+    "show_spoilage_hint": true
+  },
+
+  "text": {
+    "name_key": "item.alchemy.thornveil_herbal_ale",
+    "lore_key": "item.alchemy.thornveil_herbal_ale.desc",
+    "tooltip_key": "item.alchemy.thornveil_herbal_ale.tooltip",
+    "effect_text_key": "item.alchemy.thornveil_herbal_ale.effect",
+    "brew_time_text_key": "item.alchemy.thornveil_herbal_ale.brew_time",
+    "ingredients_text_key": "item.alchemy.thornveil_herbal_ale.ingredients",
+    "container_text_key": "item.alchemy.thornveil_herbal_ale.container",
+    "rarity_text_key": "item.alchemy.thornveil_herbal_ale.rarity",
+    "category_text_key": "item.alchemy.thornveil_herbal_ale.category",
+    "flavor_text_key": "item.alchemy.thornveil_herbal_ale.flavor_text",
+    "warning_key": "item.alchemy.thornveil_herbal_ale.warning",
+    "crafting_instructions_key": "item.alchemy.thornveil_herbal_ale.crafting_instructions"
+  }
 }

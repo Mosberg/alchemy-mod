@@ -1,13 +1,76 @@
 {
   "type": "alchemy:alcohol",
+  "schema_version": 2,
+
   "id": "alchemy:ropesend_dockside_brew",
   "category": "beer",
+  "style": "dockside_ale",
+
   "container": "alchemy:aluminum_can",
   "rarity": "common",
   "stack_size": 24,
 
-  "brew_time_seconds": 20,
-  "brew_time_ticks": 400,
+  "brewing": {
+    "brew_time_seconds": 20,
+    "brew_time_ticks": 400,
+    "station_tags": ["alchemy:fermentation_stations"],
+    "difficulty": 0,
+    "batch_size_servings": 8,
+    "byproducts": [{ "item": "minecraft:bucket", "count": 1, "chance": 1.0 }],
+    "failure": {
+      "enabled": true,
+      "base_fail_chance": 0.02,
+      "outcome": "alchemy:spoiled_beer",
+      "extra_effects": [
+        {
+          "effect": "minecraft:nausea",
+          "duration": 160,
+          "amplifier": 0,
+          "chance": 0.35
+        }
+      ]
+    }
+  },
+
+  "stats": {
+    "alcohol_by_volume": 4.2,
+    "strength": 0.22,
+    "intoxication": { "value": 0.14, "decay_rate_per_tick": 0.001 },
+    "nutrition": { "hunger": 1, "saturation": 0.08 }
+  },
+
+  "quality": {
+    "tier": "CRUDE",
+    "supports_quality": true,
+    "quality_on_brew": 0.45
+  },
+
+  "aging": {
+    "supported": false
+  },
+
+  "spoilage": {
+    "enabled": true,
+    "base_decay_per_day": 0.025,
+    "opened_decay_multiplier": 1.7,
+    "temperature": {
+      "preferred": "cool",
+      "hot_decay_multiplier": 1.45,
+      "cold_decay_multiplier": 0.9
+    }
+  },
+
+  "carbonation": {
+    "level": "low",
+    "foam": { "enabled": true, "spill_chance_on_open": 0.02 }
+  },
+
+  "visuals": {
+    "liquid_color": 14400289,
+    "bubbles": "light",
+    "glow": "none",
+    "particle": "minecraft:bubble"
+  },
 
   "effects": [
     {
@@ -31,16 +94,43 @@
     { "item": "alchemy:hops", "count": 1 }
   ],
 
-  "name_key": "item.alchemy.ropesend_dockside_brew",
-  "lore_key": "item.alchemy.ropesend_dockside_brew.desc",
-  "tooltip_key": "item.alchemy.ropesend_dockside_brew.tooltip",
-  "effect_text_key": "item.alchemy.ropesend_dockside_brew.effect",
-  "brew_time_text_key": "item.alchemy.ropesend_dockside_brew.brew_time",
-  "ingredients_text_key": "item.alchemy.ropesend_dockside_brew.ingredients",
-  "container_text_key": "item.alchemy.ropesend_dockside_brew.container",
-  "rarity_text_key": "item.alchemy.ropesend_dockside_brew.rarity",
-  "category_text_key": "item.alchemy.ropesend_dockside_brew.category",
-  "flavor_text_key": "item.alchemy.ropesend_dockside_brew.flavor_text",
-  "warning_key": "item.alchemy.ropesend_dockside_brew.warning",
-  "crafting_instructions_key": "item.alchemy.ropesend_dockside_brew.crafting_instructions"
+  "tags": [
+    "alchemy:alcoholic",
+    "alchemy:beer",
+    "alchemy:carbonated",
+    "alchemy:common_brew",
+    "alchemy:can_served"
+  ],
+
+  "loot": {
+    "weight": 9,
+    "tables": ["alchemy:tavern", "alchemy:shipwreck"]
+  },
+
+  "gates": {
+    "requires_feature_flag": "alchemy:liquids",
+    "requires_gamerule_true": "enableAlcoholEffects"
+  },
+
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true,
+    "show_spoilage_hint": true
+  },
+
+  "text": {
+    "name_key": "item.alchemy.ropesend_dockside_brew",
+    "lore_key": "item.alchemy.ropesend_dockside_brew.desc",
+    "tooltip_key": "item.alchemy.ropesend_dockside_brew.tooltip",
+    "effect_text_key": "item.alchemy.ropesend_dockside_brew.effect",
+    "brew_time_text_key": "item.alchemy.ropesend_dockside_brew.brew_time",
+    "ingredients_text_key": "item.alchemy.ropesend_dockside_brew.ingredients",
+    "container_text_key": "item.alchemy.ropesend_dockside_brew.container",
+    "rarity_text_key": "item.alchemy.ropesend_dockside_brew.rarity",
+    "category_text_key": "item.alchemy.ropesend_dockside_brew.category",
+    "flavor_text_key": "item.alchemy.ropesend_dockside_brew.flavor_text",
+    "warning_key": "item.alchemy.ropesend_dockside_brew.warning",
+    "crafting_instructions_key": "item.alchemy.ropesend_dockside_brew.crafting_instructions"
+  }
 }

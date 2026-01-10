@@ -1,13 +1,81 @@
 {
   "type": "alchemy:alcohol",
+  "schema_version": 2,
+
   "id": "alchemy:emberhold_amber_ale",
   "category": "beer",
+  "style": "amber_ale",
+
   "container": "alchemy:aluminum_can",
   "rarity": "uncommon",
   "stack_size": 24,
 
-  "brew_time_seconds": 30,
-  "brew_time_ticks": 600,
+  "brewing": {
+    "brew_time_seconds": 30,
+    "brew_time_ticks": 600,
+    "station_tags": ["alchemy:fermentation_stations"],
+    "difficulty": 2,
+    "batch_size_servings": 8,
+    "byproducts": [{ "item": "minecraft:bucket", "count": 1, "chance": 1.0 }],
+    "failure": {
+      "enabled": true,
+      "base_fail_chance": 0.05,
+      "outcome": "alchemy:spoiled_beer",
+      "extra_effects": [
+        {
+          "effect": "minecraft:weakness",
+          "duration": 200,
+          "amplifier": 0,
+          "chance": 0.35
+        }
+      ]
+    }
+  },
+
+  "stats": {
+    "alcohol_by_volume": 6.8,
+    "strength": 0.35,
+    "intoxication": { "value": 0.22, "decay_rate_per_tick": 0.001 },
+    "nutrition": { "hunger": 1, "saturation": 0.12 }
+  },
+
+  "quality": {
+    "tier": "REFINED",
+    "supports_quality": true,
+    "quality_on_brew": 0.6
+  },
+
+  "aging": {
+    "supported": true,
+    "min_days": 3,
+    "max_days": 30,
+    "preferred_container_tags": ["alchemy:barrels"],
+    "quality_bonus_per_day": 0.012,
+    "risk_per_day_open": 0.025
+  },
+
+  "spoilage": {
+    "enabled": true,
+    "base_decay_per_day": 0.02,
+    "opened_decay_multiplier": 1.55,
+    "temperature": {
+      "preferred": "cool",
+      "hot_decay_multiplier": 1.5,
+      "cold_decay_multiplier": 0.9
+    }
+  },
+
+  "carbonation": {
+    "level": "medium",
+    "foam": { "enabled": true, "spill_chance_on_open": 0.03 }
+  },
+
+  "visuals": {
+    "liquid_color": 13404625,
+    "bubbles": "medium",
+    "glow": "none",
+    "particle": "minecraft:bubble"
+  },
 
   "effects": [
     {
@@ -31,16 +99,44 @@
     { "item": "minecraft:blaze_powder", "count": 1 }
   ],
 
-  "name_key": "item.alchemy.emberhold_amber_ale",
-  "lore_key": "item.alchemy.emberhold_amber_ale.desc",
-  "tooltip_key": "item.alchemy.emberhold_amber_ale.tooltip",
-  "effect_text_key": "item.alchemy.emberhold_amber_ale.effect",
-  "brew_time_text_key": "item.alchemy.emberhold_amber_ale.brew_time",
-  "ingredients_text_key": "item.alchemy.emberhold_amber_ale.ingredients",
-  "container_text_key": "item.alchemy.emberhold_amber_ale.container",
-  "rarity_text_key": "item.alchemy.emberhold_amber_ale.rarity",
-  "category_text_key": "item.alchemy.emberhold_amber_ale.category",
-  "flavor_text_key": "item.alchemy.emberhold_amber_ale.flavor_text",
-  "warning_key": "item.alchemy.emberhold_amber_ale.warning",
-  "crafting_instructions_key": "item.alchemy.emberhold_amber_ale.crafting_instructions"
+  "tags": [
+    "alchemy:alcoholic",
+    "alchemy:beer",
+    "alchemy:amber_ale",
+    "alchemy:carbonated",
+    "alchemy:ageable",
+    "alchemy:can_served"
+  ],
+
+  "loot": {
+    "weight": 4,
+    "tables": ["alchemy:nether_fortress", "alchemy:tavern"]
+  },
+
+  "gates": {
+    "requires_feature_flag": "alchemy:liquids",
+    "requires_gamerule_true": "enableAlcoholEffects"
+  },
+
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true,
+    "show_spoilage_hint": true
+  },
+
+  "text": {
+    "name_key": "item.alchemy.emberhold_amber_ale",
+    "lore_key": "item.alchemy.emberhold_amber_ale.desc",
+    "tooltip_key": "item.alchemy.emberhold_amber_ale.tooltip",
+    "effect_text_key": "item.alchemy.emberhold_amber_ale.effect",
+    "brew_time_text_key": "item.alchemy.emberhold_amber_ale.brew_time",
+    "ingredients_text_key": "item.alchemy.emberhold_amber_ale.ingredients",
+    "container_text_key": "item.alchemy.emberhold_amber_ale.container",
+    "rarity_text_key": "item.alchemy.emberhold_amber_ale.rarity",
+    "category_text_key": "item.alchemy.emberhold_amber_ale.category",
+    "flavor_text_key": "item.alchemy.emberhold_amber_ale.flavor_text",
+    "warning_key": "item.alchemy.emberhold_amber_ale.warning",
+    "crafting_instructions_key": "item.alchemy.emberhold_amber_ale.crafting_instructions"
+  }
 }

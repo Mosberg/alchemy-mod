@@ -1,13 +1,76 @@
 {
   "type": "alchemy:alcohol",
+  "schema_version": 2,
+
   "id": "alchemy:frostmarsh_pils",
   "category": "beer",
+  "style": "pilsner",
+
   "container": "alchemy:aluminum_can",
   "rarity": "common",
   "stack_size": 24,
 
-  "brew_time_seconds": 25,
-  "brew_time_ticks": 500,
+  "brewing": {
+    "brew_time_seconds": 25,
+    "brew_time_ticks": 500,
+    "station_tags": ["alchemy:fermentation_stations"],
+    "difficulty": 1,
+    "batch_size_servings": 8,
+    "byproducts": [{ "item": "minecraft:bucket", "count": 1, "chance": 1.0 }],
+    "failure": {
+      "enabled": true,
+      "base_fail_chance": 0.03,
+      "outcome": "alchemy:spoiled_beer",
+      "extra_effects": [
+        {
+          "effect": "minecraft:slowness",
+          "duration": 160,
+          "amplifier": 0,
+          "chance": 0.25
+        }
+      ]
+    }
+  },
+
+  "stats": {
+    "alcohol_by_volume": 4.6,
+    "strength": 0.23,
+    "intoxication": { "value": 0.15, "decay_rate_per_tick": 0.001 },
+    "nutrition": { "hunger": 1, "saturation": 0.08 }
+  },
+
+  "quality": {
+    "tier": "CRUDE",
+    "supports_quality": true,
+    "quality_on_brew": 0.5
+  },
+
+  "aging": {
+    "supported": false
+  },
+
+  "spoilage": {
+    "enabled": true,
+    "base_decay_per_day": 0.024,
+    "opened_decay_multiplier": 1.55,
+    "temperature": {
+      "preferred": "cold",
+      "hot_decay_multiplier": 1.55,
+      "cold_decay_multiplier": 0.8
+    }
+  },
+
+  "carbonation": {
+    "level": "medium",
+    "foam": { "enabled": true, "spill_chance_on_open": 0.03 }
+  },
+
+  "visuals": {
+    "liquid_color": 14540253,
+    "bubbles": "medium",
+    "glow": "none",
+    "particle": "minecraft:bubble"
+  },
 
   "effects": [
     {
@@ -31,16 +94,43 @@
     { "item": "alchemy:hops", "count": 1 }
   ],
 
-  "name_key": "item.alchemy.frostmarsh_pils",
-  "lore_key": "item.alchemy.frostmarsh_pils.desc",
-  "tooltip_key": "item.alchemy.frostmarsh_pils.tooltip",
-  "effect_text_key": "item.alchemy.frostmarsh_pils.effect",
-  "brew_time_text_key": "item.alchemy.frostmarsh_pils.brew_time",
-  "ingredients_text_key": "item.alchemy.frostmarsh_pils.ingredients",
-  "container_text_key": "item.alchemy.frostmarsh_pils.container",
-  "rarity_text_key": "item.alchemy.frostmarsh_pils.rarity",
-  "category_text_key": "item.alchemy.frostmarsh_pils.category",
-  "flavor_text_key": "item.alchemy.frostmarsh_pils.flavor_text",
-  "warning_key": "item.alchemy.frostmarsh_pils.warning",
-  "crafting_instructions_key": "item.alchemy.frostmarsh_pils.crafting_instructions"
+  "tags": [
+    "alchemy:alcoholic",
+    "alchemy:beer",
+    "alchemy:pilsner",
+    "alchemy:carbonated",
+    "alchemy:can_served"
+  ],
+
+  "loot": {
+    "weight": 7,
+    "tables": ["alchemy:tundra", "alchemy:village"]
+  },
+
+  "gates": {
+    "requires_feature_flag": "alchemy:liquids",
+    "requires_gamerule_true": "enableAlcoholEffects"
+  },
+
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true,
+    "show_spoilage_hint": true
+  },
+
+  "text": {
+    "name_key": "item.alchemy.frostmarsh_pils",
+    "lore_key": "item.alchemy.frostmarsh_pils.desc",
+    "tooltip_key": "item.alchemy.frostmarsh_pils.tooltip",
+    "effect_text_key": "item.alchemy.frostmarsh_pils.effect",
+    "brew_time_text_key": "item.alchemy.frostmarsh_pils.brew_time",
+    "ingredients_text_key": "item.alchemy.frostmarsh_pils.ingredients",
+    "container_text_key": "item.alchemy.frostmarsh_pils.container",
+    "rarity_text_key": "item.alchemy.frostmarsh_pils.rarity",
+    "category_text_key": "item.alchemy.frostmarsh_pils.category",
+    "flavor_text_key": "item.alchemy.frostmarsh_pils.flavor_text",
+    "warning_key": "item.alchemy.frostmarsh_pils.warning",
+    "crafting_instructions_key": "item.alchemy.frostmarsh_pils.crafting_instructions"
+  }
 }

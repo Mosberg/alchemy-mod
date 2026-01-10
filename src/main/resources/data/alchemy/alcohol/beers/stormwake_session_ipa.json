@@ -1,13 +1,76 @@
 {
   "type": "alchemy:alcohol",
+  "schema_version": 2,
+
   "id": "alchemy:stormwake_session_ipa",
   "category": "beer",
+  "style": "session_ipa",
+
   "container": "alchemy:aluminum_can",
   "rarity": "uncommon",
   "stack_size": 24,
 
-  "brew_time_seconds": 25,
-  "brew_time_ticks": 500,
+  "brewing": {
+    "brew_time_seconds": 25,
+    "brew_time_ticks": 500,
+    "station_tags": ["alchemy:fermentation_stations"],
+    "difficulty": 1,
+    "batch_size_servings": 8,
+    "byproducts": [{ "item": "minecraft:bucket", "count": 1, "chance": 1.0 }],
+    "failure": {
+      "enabled": true,
+      "base_fail_chance": 0.035,
+      "outcome": "alchemy:spoiled_beer",
+      "extra_effects": [
+        {
+          "effect": "minecraft:mining_fatigue",
+          "duration": 160,
+          "amplifier": 0,
+          "chance": 0.25
+        }
+      ]
+    }
+  },
+
+  "stats": {
+    "alcohol_by_volume": 4.5,
+    "strength": 0.24,
+    "intoxication": { "value": 0.16, "decay_rate_per_tick": 0.001 },
+    "nutrition": { "hunger": 1, "saturation": 0.08 }
+  },
+
+  "quality": {
+    "tier": "REFINED",
+    "supports_quality": true,
+    "quality_on_brew": 0.58
+  },
+
+  "aging": {
+    "supported": false
+  },
+
+  "spoilage": {
+    "enabled": true,
+    "base_decay_per_day": 0.024,
+    "opened_decay_multiplier": 1.65,
+    "temperature": {
+      "preferred": "cool",
+      "hot_decay_multiplier": 1.45,
+      "cold_decay_multiplier": 0.9
+    }
+  },
+
+  "carbonation": {
+    "level": "high",
+    "foam": { "enabled": true, "spill_chance_on_open": 0.05 }
+  },
+
+  "visuals": {
+    "liquid_color": 13890857,
+    "bubbles": "heavy",
+    "glow": "none",
+    "particle": "minecraft:bubble"
+  },
 
   "effects": [
     {
@@ -31,16 +94,43 @@
     { "item": "minecraft:kelp", "count": 3 }
   ],
 
-  "name_key": "item.alchemy.stormwake_session_ipa",
-  "lore_key": "item.alchemy.stormwake_session_ipa.desc",
-  "tooltip_key": "item.alchemy.stormwake_session_ipa.tooltip",
-  "effect_text_key": "item.alchemy.stormwake_session_ipa.effect",
-  "brew_time_text_key": "item.alchemy.stormwake_session_ipa.brew_time",
-  "ingredients_text_key": "item.alchemy.stormwake_session_ipa.ingredients",
-  "container_text_key": "item.alchemy.stormwake_session_ipa.container",
-  "rarity_text_key": "item.alchemy.stormwake_session_ipa.rarity",
-  "category_text_key": "item.alchemy.stormwake_session_ipa.category",
-  "flavor_text_key": "item.alchemy.stormwake_session_ipa.flavor_text",
-  "warning_key": "item.alchemy.stormwake_session_ipa.warning",
-  "crafting_instructions_key": "item.alchemy.stormwake_session_ipa.crafting_instructions"
+  "tags": [
+    "alchemy:alcoholic",
+    "alchemy:beer",
+    "alchemy:ipa",
+    "alchemy:carbonated",
+    "alchemy:can_served"
+  ],
+
+  "loot": {
+    "weight": 6,
+    "tables": ["alchemy:coastal", "alchemy:tavern"]
+  },
+
+  "gates": {
+    "requires_feature_flag": "alchemy:liquids",
+    "requires_gamerule_true": "enableAlcoholEffects"
+  },
+
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true,
+    "show_spoilage_hint": true
+  },
+
+  "text": {
+    "name_key": "item.alchemy.stormwake_session_ipa",
+    "lore_key": "item.alchemy.stormwake_session_ipa.desc",
+    "tooltip_key": "item.alchemy.stormwake_session_ipa.tooltip",
+    "effect_text_key": "item.alchemy.stormwake_session_ipa.effect",
+    "brew_time_text_key": "item.alchemy.stormwake_session_ipa.brew_time",
+    "ingredients_text_key": "item.alchemy.stormwake_session_ipa.ingredients",
+    "container_text_key": "item.alchemy.stormwake_session_ipa.container",
+    "rarity_text_key": "item.alchemy.stormwake_session_ipa.rarity",
+    "category_text_key": "item.alchemy.stormwake_session_ipa.category",
+    "flavor_text_key": "item.alchemy.stormwake_session_ipa.flavor_text",
+    "warning_key": "item.alchemy.stormwake_session_ipa.warning",
+    "crafting_instructions_key": "item.alchemy.stormwake_session_ipa.crafting_instructions"
+  }
 }
