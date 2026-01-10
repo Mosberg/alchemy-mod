@@ -1,0 +1,15 @@
+{
+  "type": "alchemy:container",
+  "id": "alchemy:aluminum_keg",
+  "stack_size": 6,
+  "breakable": false,
+  "returns_container": true,
+  "can_contain_liquid": true,
+  "liquid_capacity_mb": 6000,
+  "rarity": "common",
+  "category": "containers",
+  "lore_key": "item.alchemy.aluminum_keg.desc",
+  "tooltip_key": "item.alchemy.aluminum_keg.tooltip",
+  "flavor_text_key": "item.alchemy.aluminum_keg.flavor_text",
+  "crafting_instructions_key": "item.alchemy.aluminum_keg.crafting_instructions"
+}

@@ -41,7 +41,7 @@ public final class DataLoader {
     }
 
     private static void loadBeverage(String path) throws IOException {
-        String resourcePath = "data/alchemy/alcohol/" + path + ".json";
+        String resourcePath = "data/alchemy/alcohol/beer/" + path + ".json";
         InputStream input = DataLoader.class.getClassLoader().getResourceAsStream(resourcePath);
 
         if (input == null) {
