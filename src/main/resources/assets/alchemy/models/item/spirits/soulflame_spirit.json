@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "alchemy:item/containers/aluminum_can"
+    "layer0": "alchemy:item/flasks/flask_6"
   }
 }

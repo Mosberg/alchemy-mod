@@ -22,6 +22,12 @@ public final class ModItems {
                             Identifier.of(Alchemy.MOD_ID, "aluminum_can")))
                     .maxCount(16)));
 
+    public static final Item ALUMINUM_KEG = register("aluminum_keg",
+            new Item(new Item.Settings().registryKey(
+                    net.minecraft.registry.RegistryKey.of(net.minecraft.registry.RegistryKeys.ITEM,
+                            Identifier.of(Alchemy.MOD_ID, "aluminum_keg")))
+                    .maxCount(1)));
+
     public static final BeverageCanItem COPPERCAP_LAGER = registerBeverage("coppercap_lager");
     public static final BeverageCanItem FROSTMARSH_PILS = registerBeverage("frostmarsh_pils");
     public static final BeverageCanItem EMBERHOLD_AMBER_ALE =
@@ -35,6 +41,16 @@ public final class ModItems {
             registerBeverage("thornveil_herbal_ale");
     public static final BeverageCanItem ROPESEND_DOCKSIDE_BREW =
             registerBeverage("ropesend_dockside_brew");
+
+    // Spirits
+    public static final BeverageCanItem CHORUS_BLOOM_GIN = registerBeverage("chorus_bloom_gin");
+    public static final BeverageCanItem DUNE_MIRAGE_RUM = registerBeverage("dune_mirage_rum");
+    public static final BeverageCanItem FROSTPETAL_SCHNAPPS =
+            registerBeverage("frostpetal_schnapps");
+    public static final BeverageCanItem HOLLOWSHADE_ABSINTHE =
+            registerBeverage("hollowshade_absinthe");
+    public static final BeverageCanItem SCARABGOLD_BRANDY = registerBeverage("scarabgold_brandy");
+    public static final BeverageCanItem SOULFLAME_SPIRIT = registerBeverage("soulflame_spirit");
 
     private ModItems() {}
 

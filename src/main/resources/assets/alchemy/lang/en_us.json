@@ -123,5 +123,49 @@
   "item.alchemy.ropesend_dockside_brew.container": "Container: Aluminum Can",
   "item.alchemy.ropesend_dockside_brew.flavor_text": "Brewed for sailors and scavengers—cheap, cheerful, and oddly fortunate.",
   "item.alchemy.ropesend_dockside_brew.warning": "Warning: Excessive consumption may cause Nausea.",
-  "item.alchemy.ropesend_dockside_brew.crafting_instructions": "To brew Ropesend Dockside Brew, place the ingredients into a Fermenting Barrel and wait for the brew time to complete."
+  "item.alchemy.ropesend_dockside_brew.crafting_instructions": "To brew Ropesend Dockside Brew, place the ingredients into a Fermenting Barrel and wait for the brew time to complete.",
+
+  "comment.alchemy.spirits": "Spirits",
+
+  "item.alchemy.chorus_bloom_gin": "Chorus Bloom Gin",
+  "item.alchemy.chorus_bloom_gin.desc": "A botanical gin infused with chorus blossoms—floral, ethereal, and slightly teleporty.",
+  "item.alchemy.chorus_bloom_gin.tooltip": "Use to steady nerves and sharpen senses.",
+  "item.alchemy.chorus_bloom_gin.rarity": "Rarity: Uncommon",
+  "item.alchemy.chorus_bloom_gin.category": "Category: Spirits",
+  "item.alchemy.chorus_bloom_gin.container": "Container: Aluminum Can",
+
+  "item.alchemy.dune_mirage_rum": "Dune Mirage Rum",
+  "item.alchemy.dune_mirage_rum.desc": "A velvety rum distilled under desert moons—warming, smooth, and a little deceptive.",
+  "item.alchemy.dune_mirage_rum.tooltip": "Use to feel the sands shift in your favor.",
+  "item.alchemy.dune_mirage_rum.rarity": "Rarity: Uncommon",
+  "item.alchemy.dune_mirage_rum.category": "Category: Spirits",
+  "item.alchemy.dune_mirage_rum.container": "Container: Aluminum Can",
+
+  "item.alchemy.frostpetal_schnapps": "Frostpetal Schnapps",
+  "item.alchemy.frostpetal_schnapps.desc": "A crisp schnapps with frostbitten petals—icy bright, clean as mountain air.",
+  "item.alchemy.frostpetal_schnapps.tooltip": "Use to cool the mind and quicken the pulse.",
+  "item.alchemy.frostpetal_schnapps.rarity": "Rarity: Rare",
+  "item.alchemy.frostpetal_schnapps.category": "Category: Spirits",
+  "item.alchemy.frostpetal_schnapps.container": "Container: Aluminum Can",
+
+  "item.alchemy.hollowshade_absinthe": "Hollowshade Absinthe",
+  "item.alchemy.hollowshade_absinthe.desc": "An emerald spirit brewed in shadow—bitter, complex, and unsettlingly lucid.",
+  "item.alchemy.hollowshade_absinthe.tooltip": "Use to see patterns others miss.",
+  "item.alchemy.hollowshade_absinthe.rarity": "Rarity: Epic",
+  "item.alchemy.hollowshade_absinthe.category": "Category: Spirits",
+  "item.alchemy.hollowshade_absinthe.container": "Container: Aluminum Can",
+
+  "item.alchemy.scarabgold_brandy": "Scarabgold Brandy",
+  "item.alchemy.scarabgold_brandy.desc": "Amber brandy with desert resin—rich, resinous, and royalty-approved.",
+  "item.alchemy.scarabgold_brandy.tooltip": "Use to embolden speech and steady hands.",
+  "item.alchemy.scarabgold_brandy.rarity": "Rarity: Rare",
+  "item.alchemy.scarabgold_brandy.category": "Category: Spirits",
+  "item.alchemy.scarabgold_brandy.container": "Container: Aluminum Can",
+
+  "item.alchemy.soulflame_spirit": "Soulflame Spirit",
+  "item.alchemy.soulflame_spirit.desc": "A hauntingly bright spirit that glows faintly—sweet heat, long finish.",
+  "item.alchemy.soulflame_spirit.tooltip": "Use to feel a gentle inner fire.",
+  "item.alchemy.soulflame_spirit.rarity": "Rarity: Epic",
+  "item.alchemy.soulflame_spirit.category": "Category: Spirits",
+  "item.alchemy.soulflame_spirit.container": "Container: Aluminum Can"
 }

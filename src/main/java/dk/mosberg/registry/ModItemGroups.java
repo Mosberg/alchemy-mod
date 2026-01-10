@@ -16,6 +16,7 @@ public final class ModItemGroups {
                     .icon(() -> new ItemStack(ModItems.COPPERCAP_LAGER))
                     .entries((context, entries) -> {
                         entries.add(ModItems.ALUMINUM_CAN);
+                        entries.add(ModItems.ALUMINUM_KEG);
                         ModItems.beverages().forEach(entries::add);
                     }).build());
 

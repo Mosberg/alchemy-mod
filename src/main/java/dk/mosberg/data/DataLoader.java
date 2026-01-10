@@ -27,13 +27,24 @@ public final class DataLoader {
      * Load all alcohol definitions from classpath resources.
      */
     public static void loadBeverages() {
-        String[] beverageIds = {"coppercap_lager", "frostmarsh_pils", "emberhold_amber_ale",
+        String[] beerIds = {"coppercap_lager", "frostmarsh_pils", "emberhold_amber_ale",
                 "sunvale_golden_pale", "stormwake_session_ipa", "blackvault_stout",
                 "thornveil_herbal_ale", "ropesend_dockside_brew"};
 
-        for (String id : beverageIds) {
+        String[] spiritIds = {"chorus_bloom_gin", "dune_mirage_rum", "frostpetal_schnapps",
+                "hollowshade_absinthe", "scarabgold_brandy", "soulflame_spirit"};
+
+        for (String id : beerIds) {
             try {
-                loadBeverage(id);
+                loadBeverage("beers/" + id);
+            } catch (Exception e) {
+                Alchemy.LOGGER.error("Failed to load beverage definition: {}", id, e);
+            }
+        }
+
+        for (String id : spiritIds) {
+            try {
+                loadBeverage("spirits/" + id);
             } catch (Exception e) {
                 Alchemy.LOGGER.error("Failed to load beverage definition: {}", id, e);
             }
@@ -41,7 +52,7 @@ public final class DataLoader {
     }
 
     private static void loadBeverage(String path) throws IOException {
-        String resourcePath = "data/alchemy/alcohol/beers/" + path + ".json";
+        String resourcePath = "data/alchemy/alcohol/" + path + ".json";
         InputStream input = DataLoader.class.getClassLoader().getResourceAsStream(resourcePath);
 
         if (input == null) {
@@ -93,22 +104,26 @@ public final class DataLoader {
      * future container system expansion.
      */
     public static void loadContainers() {
-        try {
-            String resourcePath = "data/alchemy/containers/aluminum_can.json";
-            InputStream input = DataLoader.class.getClassLoader().getResourceAsStream(resourcePath);
+        String[] containers = {"aluminum_can", "aluminum_keg"};
+        for (String name : containers) {
+            try {
+                String resourcePath = "data/alchemy/containers/" + name + ".json";
+                InputStream input =
+                        DataLoader.class.getClassLoader().getResourceAsStream(resourcePath);
 
-            if (input == null) {
-                Alchemy.LOGGER.warn("Container definition not found: {}", resourcePath);
-                return;
-            }
+                if (input == null) {
+                    Alchemy.LOGGER.warn("Container definition not found: {}", resourcePath);
+                    continue;
+                }
 
-            try (JsonReader reader =
-                    new JsonReader(new InputStreamReader(input, StandardCharsets.UTF_8))) {
-                JsonObject root = GSON.fromJson(reader, JsonObject.class);
-                parseContainerJson(root);
+                try (JsonReader reader =
+                        new JsonReader(new InputStreamReader(input, StandardCharsets.UTF_8))) {
+                    JsonObject root = GSON.fromJson(reader, JsonObject.class);
+                    parseContainerJson(root);
+                }
+            } catch (IOException e) {
+                Alchemy.LOGGER.error("Failed to load container definitions for {}", name, e);
             }
-        } catch (IOException e) {
-            Alchemy.LOGGER.error("Failed to load container definitions", e);
         }
     }
 
