@@ -2,6 +2,7 @@ package dk.mosberg;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import dk.mosberg.data.DataLoader;
 import dk.mosberg.registry.ModEffects;
 import dk.mosberg.registry.ModItemGroups;
 import dk.mosberg.registry.ModItems;
@@ -13,6 +14,11 @@ public class Alchemy implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        // Load data-driven definitions first
+        DataLoader.loadBeverages();
+        DataLoader.loadContainers();
+
+        // Register items and item groups
         ModEffects.register();
         ModItems.register();
         ModItemGroups.register();
