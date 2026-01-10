@@ -16,10 +16,13 @@ import net.minecraft.util.Identifier;
 
 /**
  * Loads beverage definitions from data/alchemy/alcohol/*.json and container definitions from
- * data/alchemy/containers/*.json.
+ * data/alchemy/containers/*.json. All data is loaded during mod initialization and validated before
+ * being registered.
  */
 public final class DataLoader {
     private static final Gson GSON = new Gson();
+    private static final String ALCOHOL_PATH = "data/alchemy/alcohol/";
+    private static final String CONTAINER_PATH = "data/alchemy/containers/";
 
     private DataLoader() {}
 
@@ -52,36 +55,47 @@ public final class DataLoader {
     }
 
     private static void loadBeverage(String path) throws IOException {
-        String resourcePath = "data/alchemy/alcohol/" + path + ".json";
-        InputStream input = DataLoader.class.getClassLoader().getResourceAsStream(resourcePath);
+        String resourcePath = ALCOHOL_PATH + path + ".json";
 
-        if (input == null) {
-            throw new IOException("Resource not found: " + resourcePath);
-        }
+        try (InputStream input =
+                DataLoader.class.getClassLoader().getResourceAsStream(resourcePath)) {
+            if (input == null) {
+                throw new IOException("Resource not found: " + resourcePath);
+            }
 
-        try (JsonReader reader =
-                new JsonReader(new InputStreamReader(input, StandardCharsets.UTF_8))) {
-            JsonObject root = GSON.fromJson(reader, JsonObject.class);
-            parseBeverageJson(root);
+            try (JsonReader reader =
+                    new JsonReader(new InputStreamReader(input, StandardCharsets.UTF_8))) {
+                JsonObject root = GSON.fromJson(reader, JsonObject.class);
+                parseBeverageJson(root);
+            }
         }
     }
 
     private static void parseBeverageJson(JsonObject root) {
+        validateJsonField(root, "type");
         String type = root.get("type").getAsString();
         if (!"alchemy:alcohol".equals(type)) {
             throw new IllegalArgumentException("Invalid beverage type: " + type);
         }
 
+        validateJsonField(root, "id");
         Identifier id = Identifier.of(root.get("id").getAsString());
+
+        validateJsonField(root, "stack_size");
         int stackSize = root.get("stack_size").getAsInt();
 
         // Extract primary effect (first effect in list)
+        validateJsonField(root, "effects");
         JsonArray effectsArray = root.getAsJsonArray("effects");
-        if (effectsArray == null || effectsArray.size() == 0) {
+        if (effectsArray.isEmpty()) {
             throw new IllegalArgumentException("No effects defined for beverage: " + id);
         }
 
         JsonObject primaryEffect = effectsArray.get(0).getAsJsonObject();
+        validateJsonField(primaryEffect, "effect");
+        validateJsonField(primaryEffect, "duration");
+        validateJsonField(primaryEffect, "amplifier");
+
         RegistryEntry<StatusEffect> effect = Registries.STATUS_EFFECT
                 .getEntry(Identifier.of(primaryEffect.get("effect").getAsString()))
                 .orElseThrow(() -> new IllegalArgumentException(
@@ -90,7 +104,7 @@ public final class DataLoader {
         int durationTicks = primaryEffect.get("duration").getAsInt();
         int amplifier = primaryEffect.get("amplifier").getAsInt();
 
-        // For now, use fixed hunger/saturation; could be extended from JSON
+        // Use fixed hunger/saturation values for all beverages
         int hunger = 4;
         float saturation = 0.6F;
 
@@ -99,42 +113,62 @@ public final class DataLoader {
         Alchemy.LOGGER.info("Loaded beverage definition: {} (stack size: {})", id, stackSize);
     }
 
+    private static void validateJsonField(JsonObject json, String fieldName) {
+        if (!json.has(fieldName)) {
+            throw new IllegalArgumentException(
+                    "Missing required field '" + fieldName + "' in beverage definition");
+        }
+    }
+
     /**
      * Load container definitions from data/alchemy/containers/*.json. Currently a placeholder for
      * future container system expansion.
+     */
+    /**
+     * Load container definitions from data/alchemy/containers/*.json.
      */
     public static void loadContainers() {
         String[] containers = {"aluminum_can", "aluminum_keg"};
         for (String name : containers) {
             try {
-                String resourcePath = "data/alchemy/containers/" + name + ".json";
-                InputStream input =
-                        DataLoader.class.getClassLoader().getResourceAsStream(resourcePath);
+                loadContainer(name);
+            } catch (Exception e) {
+                Alchemy.LOGGER.error("Failed to load container definition: {}", name, e);
+            }
+        }
+    }
 
-                if (input == null) {
-                    Alchemy.LOGGER.warn("Container definition not found: {}", resourcePath);
-                    continue;
-                }
+    private static void loadContainer(String name) throws IOException {
+        String resourcePath = CONTAINER_PATH + name + ".json";
 
-                try (JsonReader reader =
-                        new JsonReader(new InputStreamReader(input, StandardCharsets.UTF_8))) {
-                    JsonObject root = GSON.fromJson(reader, JsonObject.class);
-                    parseContainerJson(root);
-                }
-            } catch (IOException e) {
-                Alchemy.LOGGER.error("Failed to load container definitions for {}", name, e);
+        try (InputStream input =
+                DataLoader.class.getClassLoader().getResourceAsStream(resourcePath)) {
+            if (input == null) {
+                Alchemy.LOGGER.warn("Container definition not found: {}", resourcePath);
+                return;
+            }
+
+            try (JsonReader reader =
+                    new JsonReader(new InputStreamReader(input, StandardCharsets.UTF_8))) {
+                JsonObject root = GSON.fromJson(reader, JsonObject.class);
+                parseContainerJson(root);
             }
         }
     }
 
     private static void parseContainerJson(JsonObject root) {
+        validateJsonField(root, "type");
         String type = root.get("type").getAsString();
         if (!"alchemy:container".equals(type)) {
             throw new IllegalArgumentException("Invalid container type: " + type);
         }
 
+        validateJsonField(root, "id");
         Identifier id = Identifier.of(root.get("id").getAsString());
+
+        validateJsonField(root, "stack_size");
         int stackSize = root.get("stack_size").getAsInt();
+
         boolean breakable = root.has("breakable") && root.get("breakable").getAsBoolean();
         boolean returnsContainer =
                 root.has("returns_container") && root.get("returns_container").getAsBoolean();
@@ -143,6 +177,6 @@ public final class DataLoader {
                 "Loaded container definition: {} (stack size: {}, breakable: {}, returns: {})", id,
                 stackSize, breakable, returnsContainer);
 
-        // Container data validated but not yet stored; extend ContainerManager when needed
+        // Container data validated; extend ContainerManager when implementing container system
     }
 }

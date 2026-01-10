@@ -8,21 +8,28 @@ import dk.mosberg.registry.ModItemGroups;
 import dk.mosberg.registry.ModItems;
 import net.fabricmc.api.ModInitializer;
 
+/**
+ * Main entry point for the Alchemy mod. Handles initialization of data-driven beverage definitions,
+ * item registration, and mod setup.
+ */
 public class Alchemy implements ModInitializer {
+    /** The mod identifier used for namespacing registry entries and resources. */
     public static final String MOD_ID = "alchemy";
+
+    /** Logger instance for mod-wide logging. */
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     @Override
     public void onInitialize() {
-        // Load data-driven definitions first
+        // Load data-driven definitions first before item registration
         DataLoader.loadBeverages();
         DataLoader.loadContainers();
 
-        // Register items and item groups
+        // Register game content
         ModEffects.register();
         ModItems.register();
         ModItemGroups.register();
 
-        LOGGER.info("Alchemy initialized.");
+        LOGGER.info("{} initialized successfully.", MOD_ID);
     }
 }

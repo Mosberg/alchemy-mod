@@ -13,9 +13,15 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
+/**
+ * Registry for all items added by the Alchemy mod. Items are registered through static initializers
+ * when the class is loaded. Beverage items are created from data-driven definitions loaded by
+ * DataLoader.
+ */
 public final class ModItems {
     private static final Map<Identifier, BeverageCanItem> BEVERAGE_ITEMS = new LinkedHashMap<>();
 
+    // Containers
     public static final Item ALUMINUM_CAN = register("aluminum_can",
             new Item(new Item.Settings().registryKey(
                     net.minecraft.registry.RegistryKey.of(net.minecraft.registry.RegistryKeys.ITEM,
@@ -28,6 +34,7 @@ public final class ModItems {
                             Identifier.of(Alchemy.MOD_ID, "aluminum_keg")))
                     .maxCount(1)));
 
+    // Beers
     public static final BeverageCanItem COPPERCAP_LAGER = registerBeverage("coppercap_lager");
     public static final BeverageCanItem FROSTMARSH_PILS = registerBeverage("frostmarsh_pils");
     public static final BeverageCanItem EMBERHOLD_AMBER_ALE =
@@ -54,14 +61,30 @@ public final class ModItems {
 
     private ModItems() {}
 
+    /**
+     * Triggers static initialization of all items. Called during mod initialization to ensure all
+     * items are registered before use.
+     */
     public static void register() {
         // Intentionally left blank; class loading triggers static initializers.
     }
 
+    /**
+     * Returns an unmodifiable view of all registered beverage items.
+     *
+     * @return collection of all beverage can items
+     */
     public static Collection<BeverageCanItem> beverages() {
         return BEVERAGE_ITEMS.values();
     }
 
+    /**
+     * Registers a beverage item from a data definition loaded by DataLoader.
+     *
+     * @param path the beverage identifier path (without namespace)
+     * @return the registered beverage can item
+     * @throws NullPointerException if no beverage data exists for the given path
+     */
     private static BeverageCanItem registerBeverage(String path) {
         BeverageData data =
                 Objects.requireNonNull(BeverageManager.get(Identifier.of(Alchemy.MOD_ID, path)),
@@ -72,6 +95,14 @@ public final class ModItems {
         return item;
     }
 
+    /**
+     * Registers an item with the game registry.
+     *
+     * @param <T> the item type
+     * @param name the item identifier path
+     * @param item the item instance to register
+     * @return the registered item
+     */
     private static <T extends Item> T register(String name, T item) {
         return Registry.register(Registries.ITEM, Identifier.of(Alchemy.MOD_ID, name), item);
     }
