@@ -1,0 +1,46 @@
+{
+  "type": "alchemy:alcohol",
+  "id": "alchemy:blackvault_stout",
+  "category": "beer",
+  "container": "alchemy:aluminum_can",
+  "rarity": "rare",
+  "stack_size": 12,
+
+  "brew_time_seconds": 35,
+  "brew_time_ticks": 700,
+
+  "effects": [
+    {
+      "effect": "minecraft:resistance",
+      "duration": 3600,
+      "amplifier": 0,
+      "chance": 1.0
+    },
+    {
+      "effect": "minecraft:slowness",
+      "duration": 200,
+      "amplifier": 0,
+      "chance": 0.18
+    }
+  ],
+
+  "ingredients": [
+    { "item": "minecraft:water_bucket", "count": 1 },
+    { "item": "alchemy:roasted_barley", "count": 2 },
+    { "item": "minecraft:cocoa_beans", "count": 2 },
+    { "item": "alchemy:hops", "count": 1 }
+  ],
+
+  "name_key": "item.alchemy.blackvault_stout",
+  "lore_key": "item.alchemy.blackvault_stout.desc",
+  "tooltip_key": "item.alchemy.blackvault_stout.tooltip",
+  "effect_text_key": "item.alchemy.blackvault_stout.effect",
+  "brew_time_text_key": "item.alchemy.blackvault_stout.brew_time",
+  "ingredients_text_key": "item.alchemy.blackvault_stout.ingredients",
+  "container_text_key": "item.alchemy.blackvault_stout.container",
+  "rarity_text_key": "item.alchemy.blackvault_stout.rarity",
+  "category_text_key": "item.alchemy.blackvault_stout.category",
+  "flavor_text_key": "item.alchemy.blackvault_stout.flavor_text",
+  "warning_key": "item.alchemy.blackvault_stout.warning",
+  "crafting_instructions_key": "item.alchemy.blackvault_stout.crafting_instructions"
+}

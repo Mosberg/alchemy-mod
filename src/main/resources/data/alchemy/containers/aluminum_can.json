@@ -1,0 +1,13 @@
+{
+  "type": "alchemy:container",
+  "id": "alchemy:aluminum_can",
+  "stack_size": 64,
+  "breakable": false,
+  "returns_container": false,
+  "rarity": "common",
+  "category": "containers",
+  "lore_key": "item.alchemy.aluminum_can.desc",
+  "tooltip_key": "item.alchemy.aluminum_can.tooltip",
+  "flavor_text_key": "item.alchemy.aluminum_can.flavor_text",
+  "crafting_instructions_key": "item.alchemy.aluminum_can.crafting_instructions"
+}

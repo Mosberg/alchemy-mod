@@ -1,0 +1,46 @@
+{
+  "type": "alchemy:alcohol",
+  "id": "alchemy:emberhold_amber_ale",
+  "category": "beer",
+  "container": "alchemy:aluminum_can",
+  "rarity": "uncommon",
+  "stack_size": 16,
+
+  "brew_time_seconds": 30,
+  "brew_time_ticks": 600,
+
+  "effects": [
+    {
+      "effect": "minecraft:fire_resistance",
+      "duration": 2400,
+      "amplifier": 0,
+      "chance": 1.0
+    },
+    {
+      "effect": "minecraft:weakness",
+      "duration": 200,
+      "amplifier": 0,
+      "chance": 0.15
+    }
+  ],
+
+  "ingredients": [
+    { "item": "minecraft:water_bucket", "count": 1 },
+    { "item": "alchemy:barley", "count": 2 },
+    { "item": "alchemy:roasted_barley", "count": 1 },
+    { "item": "minecraft:blaze_powder", "count": 1 }
+  ],
+
+  "name_key": "item.alchemy.emberhold_amber_ale",
+  "lore_key": "item.alchemy.emberhold_amber_ale.desc",
+  "tooltip_key": "item.alchemy.emberhold_amber_ale.tooltip",
+  "effect_text_key": "item.alchemy.emberhold_amber_ale.effect",
+  "brew_time_text_key": "item.alchemy.emberhold_amber_ale.brew_time",
+  "ingredients_text_key": "item.alchemy.emberhold_amber_ale.ingredients",
+  "container_text_key": "item.alchemy.emberhold_amber_ale.container",
+  "rarity_text_key": "item.alchemy.emberhold_amber_ale.rarity",
+  "category_text_key": "item.alchemy.emberhold_amber_ale.category",
+  "flavor_text_key": "item.alchemy.emberhold_amber_ale.flavor_text",
+  "warning_key": "item.alchemy.emberhold_amber_ale.warning",
+  "crafting_instructions_key": "item.alchemy.emberhold_amber_ale.crafting_instructions"
+}

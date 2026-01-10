@@ -1,0 +1,46 @@
+{
+  "type": "alchemy:alcohol",
+  "id": "alchemy:stormwake_session_ipa",
+  "category": "beer",
+  "container": "alchemy:aluminum_can",
+  "rarity": "uncommon",
+  "stack_size": 16,
+
+  "brew_time_seconds": 25,
+  "brew_time_ticks": 500,
+
+  "effects": [
+    {
+      "effect": "minecraft:dolphins_grace",
+      "duration": 3600,
+      "amplifier": 0,
+      "chance": 1.0
+    },
+    {
+      "effect": "minecraft:mining_fatigue",
+      "duration": 200,
+      "amplifier": 0,
+      "chance": 0.12
+    }
+  ],
+
+  "ingredients": [
+    { "item": "minecraft:water_bucket", "count": 1 },
+    { "item": "alchemy:barley", "count": 2 },
+    { "item": "alchemy:hops", "count": 2 },
+    { "item": "minecraft:kelp", "count": 3 }
+  ],
+
+  "name_key": "item.alchemy.stormwake_session_ipa",
+  "lore_key": "item.alchemy.stormwake_session_ipa.desc",
+  "tooltip_key": "item.alchemy.stormwake_session_ipa.tooltip",
+  "effect_text_key": "item.alchemy.stormwake_session_ipa.effect",
+  "brew_time_text_key": "item.alchemy.stormwake_session_ipa.brew_time",
+  "ingredients_text_key": "item.alchemy.stormwake_session_ipa.ingredients",
+  "container_text_key": "item.alchemy.stormwake_session_ipa.container",
+  "rarity_text_key": "item.alchemy.stormwake_session_ipa.rarity",
+  "category_text_key": "item.alchemy.stormwake_session_ipa.category",
+  "flavor_text_key": "item.alchemy.stormwake_session_ipa.flavor_text",
+  "warning_key": "item.alchemy.stormwake_session_ipa.warning",
+  "crafting_instructions_key": "item.alchemy.stormwake_session_ipa.crafting_instructions"
+}

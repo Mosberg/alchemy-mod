@@ -1,0 +1,45 @@
+{
+  "type": "alchemy:alcohol",
+  "id": "alchemy:coppercap_lager",
+  "category": "beer",
+  "container": "alchemy:aluminum_can",
+  "rarity": "uncommon",
+  "stack_size": 16,
+
+  "brew_time_seconds": 20,
+  "brew_time_ticks": 400,
+
+  "effects": [
+    {
+      "effect": "minecraft:haste",
+      "duration": 6000,
+      "amplifier": 0,
+      "chance": 1.0
+    },
+    {
+      "effect": "minecraft:nausea",
+      "duration": 200,
+      "amplifier": 0,
+      "chance": 0.15
+    }
+  ],
+
+  "ingredients": [
+    { "item": "minecraft:water_bucket", "count": 1 },
+    { "item": "alchemy:barley", "count": 2 },
+    { "item": "minecraft:brown_mushroom", "count": 2 }
+  ],
+
+  "name_key": "item.alchemy.coppercap_lager",
+  "lore_key": "item.alchemy.coppercap_lager.desc",
+  "tooltip_key": "item.alchemy.coppercap_lager.tooltip",
+  "effect_text_key": "item.alchemy.coppercap_lager.effect",
+  "brew_time_text_key": "item.alchemy.coppercap_lager.brew_time",
+  "ingredients_text_key": "item.alchemy.coppercap_lager.ingredients",
+  "container_text_key": "item.alchemy.coppercap_lager.container",
+  "rarity_text_key": "item.alchemy.coppercap_lager.rarity",
+  "category_text_key": "item.alchemy.coppercap_lager.category",
+  "flavor_text_key": "item.alchemy.coppercap_lager.flavor_text",
+  "warning_key": "item.alchemy.coppercap_lager.warning",
+  "crafting_instructions_key": "item.alchemy.coppercap_lager.crafting_instructions"
+}

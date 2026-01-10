@@ -1,0 +1,46 @@
+{
+  "type": "alchemy:alcohol",
+  "id": "alchemy:thornveil_herbal_ale",
+  "category": "beer",
+  "container": "alchemy:aluminum_can",
+  "rarity": "uncommon",
+  "stack_size": 16,
+
+  "brew_time_seconds": 30,
+  "brew_time_ticks": 600,
+
+  "effects": [
+    {
+      "effect": "minecraft:regeneration",
+      "duration": 900,
+      "amplifier": 0,
+      "chance": 1.0
+    },
+    {
+      "effect": "minecraft:poison",
+      "duration": 100,
+      "amplifier": 0,
+      "chance": 0.12
+    }
+  ],
+
+  "ingredients": [
+    { "item": "minecraft:water_bucket", "count": 1 },
+    { "item": "minecraft:wheat", "count": 2 },
+    { "item": "minecraft:sweet_berries", "count": 3 },
+    { "item": "minecraft:dandelion", "count": 1 }
+  ],
+
+  "name_key": "item.alchemy.thornveil_herbal_ale",
+  "lore_key": "item.alchemy.thornveil_herbal_ale.desc",
+  "tooltip_key": "item.alchemy.thornveil_herbal_ale.tooltip",
+  "effect_text_key": "item.alchemy.thornveil_herbal_ale.effect",
+  "brew_time_text_key": "item.alchemy.thornveil_herbal_ale.brew_time",
+  "ingredients_text_key": "item.alchemy.thornveil_herbal_ale.ingredients",
+  "container_text_key": "item.alchemy.thornveil_herbal_ale.container",
+  "rarity_text_key": "item.alchemy.thornveil_herbal_ale.rarity",
+  "category_text_key": "item.alchemy.thornveil_herbal_ale.category",
+  "flavor_text_key": "item.alchemy.thornveil_herbal_ale.flavor_text",
+  "warning_key": "item.alchemy.thornveil_herbal_ale.warning",
+  "crafting_instructions_key": "item.alchemy.thornveil_herbal_ale.crafting_instructions"
+}
