@@ -4,6 +4,8 @@
   "stack_size": 6,
   "breakable": false,
   "returns_container": true,
+  "can_contain_liquid": true,
+  "liquid_capacity_mb": 6000,
   "rarity": "common",
   "category": "containers",
   "lore_key": "item.alchemy.keg.desc",
