@@ -1,0 +1,146 @@
+{
+  "type": "alchemy:alcohol",
+  "schema_version": 2,
+
+  "id": "alchemy:soulflame_spirit",
+  "category": "spirit",
+  "style": "nether_spirit",
+
+  "container": "alchemy:glass_flask",
+  "rarity": "epic",
+  "stack_size": 8,
+
+  "brew_time_seconds": 45,
+  "brew_time_ticks": 900,
+
+  "brewing": {
+    "brew_time_seconds": 45,
+    "brew_time_ticks": 900,
+    "station_tags": ["alchemy:distillation_stations"],
+    "difficulty": 3,
+    "batch_size_servings": 4,
+    "byproducts": [{ "item": "minecraft:bucket", "count": 1, "chance": 1.0 }],
+    "failure": {
+      "enabled": true,
+      "base_fail_chance": 0.06,
+      "outcome": "alchemy:spoiled_spirit",
+      "extra_effects": [
+        {
+          "effect": "minecraft:wither",
+          "duration": 120,
+          "amplifier": 0,
+          "chance": 0.25
+        }
+      ]
+    }
+  },
+
+  "stats": {
+    "alcohol_by_volume": 52.0,
+    "strength": 0.78,
+    "intoxication": { "value": 0.34, "decay_rate_per_tick": 0.001 },
+    "nutrition": { "hunger": 0, "saturation": 0.0 }
+  },
+
+  "quality": {
+    "tier": "MASTERWORK",
+    "supports_quality": true,
+    "quality_on_brew": 0.72,
+    "quality_floor": 0.2,
+    "quality_ceiling": 1.0
+  },
+
+  "aging": {
+    "supported": true,
+    "min_days": 7,
+    "max_days": 60,
+    "preferred_container_tags": ["alchemy:barrels"],
+    "quality_bonus_per_day": 0.012,
+    "risk_per_day_open": 0.03
+  },
+
+  "spoilage": {
+    "enabled": true,
+    "base_decay_per_day": 0.01,
+    "opened_decay_multiplier": 1.25,
+    "temperature": {
+      "preferred": "cool",
+      "hot_decay_multiplier": 1.25,
+      "cold_decay_multiplier": 0.9
+    }
+  },
+
+  "carbonation": {
+    "level": "none",
+    "foam": { "enabled": false, "spill_chance_on_open": 0.0 }
+  },
+
+  "visuals": {
+    "liquid_color": 3905535,
+    "bubbles": "none",
+    "glow": "strong",
+    "particle": "minecraft:soul_fire_flame"
+  },
+
+  "effects": [
+    {
+      "effect": "minecraft:fire_resistance",
+      "duration": 1800,
+      "amplifier": 1,
+      "chance": 1.0
+    },
+    {
+      "effect": "minecraft:nausea",
+      "duration": 200,
+      "amplifier": 0,
+      "chance": 0.25
+    }
+  ],
+
+  "ingredients": [
+    { "item": "minecraft:water_bucket", "count": 1 },
+    { "item": "alchemy:barley", "count": 3 },
+    { "item": "alchemy:yeast", "count": 1 },
+    { "item": "minecraft:blaze_powder", "count": 1 },
+    { "item": "minecraft:soul_sand", "count": 2 }
+  ],
+
+  "tags": [
+    "alchemy:alcoholic",
+    "alchemy:spirit",
+    "alchemy:nether",
+    "alchemy:forbidden",
+    "alchemy:magical",
+    "alchemy:distilled"
+  ],
+
+  "loot": {
+    "weight": 2,
+    "tables": ["alchemy:nether_fortress", "alchemy:bossdrop"]
+  },
+
+  "gates": {
+    "requires_feature_flag": "alchemy:liquids",
+    "requires_gamerule_true": "enableAlcoholEffects"
+  },
+
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true,
+    "show_spoilage_hint": true
+  },
+
+  "name_key": "item.alchemy.soulflame_spirit",
+  "lore_key": "item.alchemy.soulflame_spirit.desc",
+  "tooltip_key": "item.alchemy.soulflame_spirit.tooltip",
+  "effect_text_key": "item.alchemy.soulflame_spirit.effect",
+  "brew_time_text_key": "item.alchemy.soulflame_spirit.brew_time",
+  "ingredients_text_key": "item.alchemy.soulflame_spirit.ingredients",
+  "container_text_key": "item.alchemy.soulflame_spirit.container",
+  "rarity_text_key": "item.alchemy.soulflame_spirit.rarity",
+  "category_text_key": "item.alchemy.soulflame_spirit.category",
+  "flavor_text_key": "item.alchemy.soulflame_spirit.flavor_text",
+  "warning_key": "item.alchemy.soulflame_spirit.warning",
+  "crafting_instructions_key": "item.alchemy.soulflame_spirit.crafting_instructions"
+}

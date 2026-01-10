@@ -1,0 +1,142 @@
+{
+  "type": "alchemy:alcohol",
+  "schema_version": 2,
+
+  "id": "alchemy:dune_mirage_rum",
+  "category": "spirit",
+  "style": "rum",
+
+  "container": "alchemy:glass_flask",
+  "rarity": "uncommon",
+  "stack_size": 12,
+
+  "brew_time_seconds": 35,
+  "brew_time_ticks": 700,
+
+  "brewing": {
+    "brew_time_seconds": 35,
+    "brew_time_ticks": 700,
+    "station_tags": ["alchemy:distillation_stations"],
+    "difficulty": 2,
+    "batch_size_servings": 4,
+    "byproducts": [{ "item": "minecraft:bucket", "count": 1, "chance": 1.0 }],
+    "failure": {
+      "enabled": true,
+      "base_fail_chance": 0.04,
+      "outcome": "alchemy:spoiled_spirit",
+      "extra_effects": [
+        {
+          "effect": "minecraft:nausea",
+          "duration": 160,
+          "amplifier": 0,
+          "chance": 0.3
+        }
+      ]
+    }
+  },
+
+  "stats": {
+    "alcohol_by_volume": 41.0,
+    "strength": 0.58,
+    "intoxication": { "value": 0.26, "decay_rate_per_tick": 0.001 },
+    "nutrition": { "hunger": 0, "saturation": 0.0 }
+  },
+
+  "quality": {
+    "tier": "REFINED",
+    "supports_quality": true,
+    "quality_on_brew": 0.6
+  },
+
+  "aging": {
+    "supported": true,
+    "min_days": 3,
+    "max_days": 25,
+    "preferred_container_tags": ["alchemy:barrels"],
+    "quality_bonus_per_day": 0.01,
+    "risk_per_day_open": 0.02
+  },
+
+  "spoilage": {
+    "enabled": true,
+    "base_decay_per_day": 0.012,
+    "opened_decay_multiplier": 1.25,
+    "temperature": {
+      "preferred": "warm",
+      "hot_decay_multiplier": 1.15,
+      "cold_decay_multiplier": 0.95
+    }
+  },
+
+  "carbonation": {
+    "level": "none",
+    "foam": { "enabled": false, "spill_chance_on_open": 0.0 }
+  },
+
+  "visuals": {
+    "liquid_color": 15181915,
+    "bubbles": "none",
+    "glow": "subtle",
+    "particle": "minecraft:falling_dust"
+  },
+
+  "effects": [
+    {
+      "effect": "minecraft:fire_resistance",
+      "duration": 900,
+      "amplifier": 0,
+      "chance": 1.0
+    },
+    {
+      "effect": "minecraft:nausea",
+      "duration": 200,
+      "amplifier": 0,
+      "chance": 0.25
+    }
+  ],
+
+  "ingredients": [
+    { "item": "minecraft:water_bucket", "count": 1 },
+    { "item": "minecraft:sugar", "count": 3 },
+    { "item": "minecraft:dates", "count": 2 },
+    { "item": "alchemy:yeast", "count": 1 },
+    { "item": "minecraft:sand", "count": 2 }
+  ],
+
+  "tags": [
+    "alchemy:alcoholic",
+    "alchemy:spirit",
+    "alchemy:desert",
+    "alchemy:human",
+    "alchemy:distilled"
+  ],
+
+  "loot": {
+    "weight": 4,
+    "tables": ["alchemy:desert_pyramid", "alchemy:tavern"]
+  },
+
+  "gates": {
+    "requires_feature_flag": "alchemy:liquids",
+    "requires_gamerule_true": "enableAlcoholEffects"
+  },
+
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true
+  },
+
+  "name_key": "item.alchemy.dune_mirage_rum",
+  "lore_key": "item.alchemy.dune_mirage_rum.desc",
+  "tooltip_key": "item.alchemy.dune_mirage_rum.tooltip",
+  "effect_text_key": "item.alchemy.dune_mirage_rum.effect",
+  "brew_time_text_key": "item.alchemy.dune_mirage_rum.brew_time",
+  "ingredients_text_key": "item.alchemy.dune_mirage_rum.ingredients",
+  "container_text_key": "item.alchemy.dune_mirage_rum.container",
+  "rarity_text_key": "item.alchemy.dune_mirage_rum.rarity",
+  "category_text_key": "item.alchemy.dune_mirage_rum.category",
+  "flavor_text_key": "item.alchemy.dune_mirage_rum.flavor_text",
+  "warning_key": "item.alchemy.dune_mirage_rum.warning",
+  "crafting_instructions_key": "item.alchemy.dune_mirage_rum.crafting_instructions"
+}

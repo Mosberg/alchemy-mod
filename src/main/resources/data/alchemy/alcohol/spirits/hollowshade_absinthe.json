@@ -1,0 +1,144 @@
+{
+  "type": "alchemy:alcohol",
+  "schema_version": 2,
+
+  "id": "alchemy:hollowshade_absinthe",
+  "category": "spirit",
+  "style": "absinthe",
+
+  "container": "alchemy:glass_flask",
+  "rarity": "legendary",
+  "stack_size": 6,
+
+  "brew_time_seconds": 60,
+  "brew_time_ticks": 1200,
+
+  "brewing": {
+    "brew_time_seconds": 60,
+    "brew_time_ticks": 1200,
+    "station_tags": ["alchemy:distillation_stations"],
+    "difficulty": 3,
+    "batch_size_servings": 3,
+    "byproducts": [{ "item": "minecraft:bucket", "count": 1, "chance": 1.0 }],
+    "failure": {
+      "enabled": true,
+      "base_fail_chance": 0.08,
+      "outcome": "alchemy:spoiled_spirit",
+      "extra_effects": [
+        {
+          "effect": "minecraft:blindness",
+          "duration": 120,
+          "amplifier": 0,
+          "chance": 0.4
+        }
+      ]
+    }
+  },
+
+  "stats": {
+    "alcohol_by_volume": 62.0,
+    "strength": 0.9,
+    "intoxication": { "value": 0.45, "decay_rate_per_tick": 0.001 },
+    "nutrition": { "hunger": 0, "saturation": 0.0 }
+  },
+
+  "quality": {
+    "tier": "LEGENDARY",
+    "supports_quality": true,
+    "quality_on_brew": 0.8
+  },
+
+  "aging": {
+    "supported": true,
+    "min_days": 10,
+    "max_days": 90,
+    "preferred_container_tags": ["alchemy:barrels"],
+    "quality_bonus_per_day": 0.012,
+    "risk_per_day_open": 0.035
+  },
+
+  "spoilage": {
+    "enabled": true,
+    "base_decay_per_day": 0.008,
+    "opened_decay_multiplier": 1.2,
+    "temperature": {
+      "preferred": "cellar",
+      "hot_decay_multiplier": 1.2,
+      "cold_decay_multiplier": 0.9
+    }
+  },
+
+  "carbonation": {
+    "level": "none",
+    "foam": { "enabled": false, "spill_chance_on_open": 0.0 }
+  },
+
+  "visuals": {
+    "liquid_color": 5037962,
+    "bubbles": "none",
+    "glow": "strong",
+    "particle": "minecraft:dragon_breath"
+  },
+
+  "effects": [
+    {
+      "effect": "minecraft:night_vision",
+      "duration": 1800,
+      "amplifier": 0,
+      "chance": 1.0
+    },
+    {
+      "effect": "minecraft:blindness",
+      "duration": 160,
+      "amplifier": 0,
+      "chance": 0.4
+    }
+  ],
+
+  "ingredients": [
+    { "item": "minecraft:water_bucket", "count": 1 },
+    { "item": "alchemy:wormwood", "count": 3 },
+    { "item": "minecraft:chorus_fruit", "count": 4 },
+    { "item": "alchemy:yeast", "count": 1 },
+    { "item": "minecraft:phantom_membrane", "count": 1 }
+  ],
+
+  "tags": [
+    "alchemy:alcoholic",
+    "alchemy:spirit",
+    "alchemy:forbidden",
+    "alchemy:shadow",
+    "alchemy:magical",
+    "alchemy:distilled"
+  ],
+
+  "loot": {
+    "weight": 1,
+    "tables": ["alchemy:bossdrop", "alchemy:end_city"]
+  },
+
+  "gates": {
+    "requires_feature_flag": "alchemy:liquids",
+    "requires_gamerule_true": "enableAlcoholEffects"
+  },
+
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true,
+    "show_spoilage_hint": true
+  },
+
+  "name_key": "item.alchemy.hollowshade_absinthe",
+  "lore_key": "item.alchemy.hollowshade_absinthe.desc",
+  "tooltip_key": "item.alchemy.hollowshade_absinthe.tooltip",
+  "effect_text_key": "item.alchemy.hollowshade_absinthe.effect",
+  "brew_time_text_key": "item.alchemy.hollowshade_absinthe.brew_time",
+  "ingredients_text_key": "item.alchemy.hollowshade_absinthe.ingredients",
+  "container_text_key": "item.alchemy.hollowshade_absinthe.container",
+  "rarity_text_key": "item.alchemy.hollowshade_absinthe.rarity",
+  "category_text_key": "item.alchemy.hollowshade_absinthe.category",
+  "flavor_text_key": "item.alchemy.hollowshade_absinthe.flavor_text",
+  "warning_key": "item.alchemy.hollowshade_absinthe.warning",
+  "crafting_instructions_key": "item.alchemy.hollowshade_absinthe.crafting_instructions"
+}

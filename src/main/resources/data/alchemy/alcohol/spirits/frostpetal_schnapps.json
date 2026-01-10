@@ -1,0 +1,143 @@
+{
+  "type": "alchemy:alcohol",
+  "schema_version": 2,
+
+  "id": "alchemy:frostpetal_schnapps",
+  "category": "spirit",
+  "style": "schnapps",
+
+  "container": "alchemy:glass_flask",
+  "rarity": "rare",
+  "stack_size": 12,
+
+  "brew_time_seconds": 35,
+  "brew_time_ticks": 700,
+
+  "brewing": {
+    "brew_time_seconds": 35,
+    "brew_time_ticks": 700,
+    "station_tags": ["alchemy:distillation_stations"],
+    "difficulty": 2,
+    "batch_size_servings": 4,
+    "byproducts": [{ "item": "minecraft:bucket", "count": 1, "chance": 1.0 }],
+    "failure": {
+      "enabled": true,
+      "base_fail_chance": 0.04,
+      "outcome": "alchemy:spoiled_spirit",
+      "extra_effects": [
+        {
+          "effect": "minecraft:mining_fatigue",
+          "duration": 120,
+          "amplifier": 0,
+          "chance": 0.25
+        }
+      ]
+    }
+  },
+
+  "stats": {
+    "alcohol_by_volume": 38.0,
+    "strength": 0.56,
+    "intoxication": { "value": 0.25, "decay_rate_per_tick": 0.001 },
+    "nutrition": { "hunger": 0, "saturation": 0.0 }
+  },
+
+  "quality": {
+    "tier": "AGED",
+    "supports_quality": true,
+    "quality_on_brew": 0.66
+  },
+
+  "aging": {
+    "supported": true,
+    "min_days": 5,
+    "max_days": 40,
+    "preferred_container_tags": ["alchemy:barrels"],
+    "quality_bonus_per_day": 0.012,
+    "risk_per_day_open": 0.02
+  },
+
+  "spoilage": {
+    "enabled": true,
+    "base_decay_per_day": 0.01,
+    "opened_decay_multiplier": 1.2,
+    "temperature": {
+      "preferred": "cold",
+      "hot_decay_multiplier": 1.35,
+      "cold_decay_multiplier": 0.8
+    }
+  },
+
+  "carbonation": {
+    "level": "none",
+    "foam": { "enabled": false, "spill_chance_on_open": 0.0 }
+  },
+
+  "visuals": {
+    "liquid_color": 9434367,
+    "bubbles": "none",
+    "glow": "subtle",
+    "particle": "minecraft:snowflake"
+  },
+
+  "effects": [
+    {
+      "effect": "minecraft:slow_falling",
+      "duration": 600,
+      "amplifier": 0,
+      "chance": 1.0
+    },
+    {
+      "effect": "minecraft:mining_fatigue",
+      "duration": 200,
+      "amplifier": 0,
+      "chance": 0.3
+    }
+  ],
+
+  "ingredients": [
+    { "item": "minecraft:water_bucket", "count": 1 },
+    { "item": "minecraft:sweet_berries", "count": 6 },
+    { "item": "alchemy:yeast", "count": 1 },
+    { "item": "minecraft:snowball", "count": 4 },
+    { "item": "minecraft:ice", "count": 1 }
+  ],
+
+  "tags": [
+    "alchemy:alcoholic",
+    "alchemy:spirit",
+    "alchemy:cold",
+    "alchemy:elven",
+    "alchemy:magical",
+    "alchemy:distilled"
+  ],
+
+  "loot": {
+    "weight": 3,
+    "tables": ["alchemy:igloo", "alchemy:festival", "alchemy:tavern_rare"]
+  },
+
+  "gates": {
+    "requires_feature_flag": "alchemy:liquids",
+    "requires_gamerule_true": "enableAlcoholEffects"
+  },
+
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true
+  },
+
+  "name_key": "item.alchemy.frostpetal_schnapps",
+  "lore_key": "item.alchemy.frostpetal_schnapps.desc",
+  "tooltip_key": "item.alchemy.frostpetal_schnapps.tooltip",
+  "effect_text_key": "item.alchemy.frostpetal_schnapps.effect",
+  "brew_time_text_key": "item.alchemy.frostpetal_schnapps.brew_time",
+  "ingredients_text_key": "item.alchemy.frostpetal_schnapps.ingredients",
+  "container_text_key": "item.alchemy.frostpetal_schnapps.container",
+  "rarity_text_key": "item.alchemy.frostpetal_schnapps.rarity",
+  "category_text_key": "item.alchemy.frostpetal_schnapps.category",
+  "flavor_text_key": "item.alchemy.frostpetal_schnapps.flavor_text",
+  "warning_key": "item.alchemy.frostpetal_schnapps.warning",
+  "crafting_instructions_key": "item.alchemy.frostpetal_schnapps.crafting_instructions"
+}
