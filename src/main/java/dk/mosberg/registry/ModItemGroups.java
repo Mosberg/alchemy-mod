@@ -24,6 +24,7 @@ public final class ModItemGroups {
             FabricItemGroup.builder().displayName(Text.translatable("itemGroup.alchemy.main")).icon(
                     () -> new ItemStack(firstItem(ModItems.beverages(), ModItems.containers())))
                     .entries((context, entries) -> {
+                        ModBlocks.blockItems().forEach(entries::add);
                         ModItems.containers().forEach(entries::add);
                         ModItems.beverages().forEach(entries::add);
                         ModItems.equipment().forEach(entries::add);

@@ -8,5 +8,8 @@ import net.minecraft.util.Identifier;
  * extended onto this record later.
  */
 public record EquipmentData(Identifier id, String nameKey, String rarity, String material,
-        String function, int stackSize) {
+        String function, int stackSize, Placement placement) {
+
+    public record Placement(boolean blockEnabled, Identifier blockId, Identifier blockEntityId) {
+    }
 }

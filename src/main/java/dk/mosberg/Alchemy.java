@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import dk.mosberg.data.ContentPack;
 import dk.mosberg.data.DataLoader;
+import dk.mosberg.registry.ModBlocks;
 import dk.mosberg.registry.ModEffects;
 import dk.mosberg.registry.ModItemGroups;
 import dk.mosberg.registry.ModItems;
@@ -27,6 +28,7 @@ public class Alchemy implements ModInitializer {
 
         // Register game content
         ModEffects.register();
+        ModBlocks.register(content);
         ModItems.register(content);
         ModItemGroups.register();
 

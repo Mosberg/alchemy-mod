@@ -27,7 +27,7 @@ import net.minecraft.util.Identifier;
  * that feeds item registration and runtime managers.
  */
 public final class DataLoader {
-    private static final Gson GSON = new GsonBuilder().setLenient().create();
+    private static final Gson GSON = new GsonBuilder().create();
     private static final String DATA_ROOT = "data/alchemy";
     private static final String BEVERAGES_DIR = DATA_ROOT + "/beverages";
     private static final String CONTAINERS_DIR = DATA_ROOT + "/containers";
@@ -71,6 +71,7 @@ public final class DataLoader {
             paths.filter(p -> p.toString().endsWith(".json")).forEach(path -> {
                 try (Reader reader =
                         new BufferedReader(Files.newBufferedReader(path, StandardCharsets.UTF_8))) {
+                    @SuppressWarnings("null")
                     JsonObject root = GSON.fromJson(reader, JsonObject.class);
                     BeverageData data = parseBeverage(root);
                     out.put(data.id(), data);
@@ -166,6 +167,7 @@ public final class DataLoader {
             paths.filter(p -> p.toString().endsWith(".json")).forEach(path -> {
                 try (Reader reader =
                         new BufferedReader(Files.newBufferedReader(path, StandardCharsets.UTF_8))) {
+                    @SuppressWarnings("null")
                     JsonObject root = GSON.fromJson(reader, JsonObject.class);
                     ContainerData data = parseContainer(root);
                     out.put(data.id(), data);
@@ -212,7 +214,28 @@ public final class DataLoader {
         ContainerData.Seal seal = new ContainerData.Seal(bool(sealObj, "starts_sealed", true),
                 bool(sealObj, "reopenable", true), string(sealObj, "seal_quality", "good"));
 
-        return new ContainerData(id, kind, stack, rarity, durability, interaction, seal);
+        ContainerData.StateStorage stateStorage = parseContainerStateStorage(root, id);
+
+        return new ContainerData(id, kind, stack, rarity, durability, interaction, seal,
+                stateStorage);
+    }
+
+    private static ContainerData.StateStorage parseContainerStateStorage(JsonObject root,
+            Identifier id) {
+        JsonObject stateStorageObj = object(root, "state_storage");
+        JsonObject placedBlockObj = object(stateStorageObj, "placed_block");
+
+        boolean enabled = bool(placedBlockObj, "enabled", placedBlockObj.has("block_id"));
+        Identifier blockId = placedBlockObj.has("block_id") ? id(placedBlockObj, "block_id")
+                : Identifier.of(id.getNamespace(), id.getPath() + "_block");
+        Identifier blockEntityId =
+                placedBlockObj.has("block_entity_id") ? id(placedBlockObj, "block_entity_id")
+                        : blockId;
+        boolean syncToClient = bool(placedBlockObj, "sync_to_client", true);
+        boolean dropsKeepContents = bool(placedBlockObj, "drops_keep_contents", true);
+
+        return new ContainerData.StateStorage(new ContainerData.PlacedBlock(enabled, blockId,
+                blockEntityId, syncToClient, dropsKeepContents));
     }
 
     private static void loadEquipment(Path equipmentPath, Map<Identifier, EquipmentData> out)
@@ -224,6 +247,7 @@ public final class DataLoader {
             paths.filter(p -> p.toString().endsWith(".json")).forEach(path -> {
                 try (Reader reader =
                         new BufferedReader(Files.newBufferedReader(path, StandardCharsets.UTF_8))) {
+                    @SuppressWarnings("null")
                     JsonObject root = GSON.fromJson(reader, JsonObject.class);
                     EquipmentData data = parseEquipment(root);
                     out.put(data.id(), data);
@@ -243,7 +267,21 @@ public final class DataLoader {
         String material = string(root, "material", "");
         String function = string(root, "function", "");
         int stack = integer(root, "stack_size", 1);
-        return new EquipmentData(id, nameKey, rarity, material, function, stack);
+
+        EquipmentData.Placement placement = parseEquipmentPlacement(root, id);
+
+        return new EquipmentData(id, nameKey, rarity, material, function, stack, placement);
+    }
+
+    private static EquipmentData.Placement parseEquipmentPlacement(JsonObject root, Identifier id) {
+        JsonObject placementObj = object(root, "placement");
+        String kind = string(placementObj, "kind", "");
+        boolean blockEnabled = "block".equalsIgnoreCase(kind);
+        Identifier blockId = placementObj.has("block_id") ? id(placementObj, "block_id")
+                : Identifier.of(id.getNamespace(), id.getPath() + "_block");
+        Identifier blockEntityId =
+                placementObj.has("block_entity_id") ? id(placementObj, "block_entity_id") : blockId;
+        return new EquipmentData.Placement(blockEnabled, blockId, blockEntityId);
     }
 
     // --- helpers ---------------------------------------------------------

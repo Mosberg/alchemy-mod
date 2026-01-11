@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
  * can be added later as needed.
  */
 public record ContainerData(Identifier id, String containerKind, int stackSize, String rarity,
-        Durability durability, Interaction interaction, Seal seal) {
+        Durability durability, Interaction interaction, Seal seal, StateStorage stateStorage) {
 
     public record Durability(boolean breakable, int maxDamage, boolean fireproof,
             String explosionResistance) {
@@ -20,5 +20,12 @@ public record ContainerData(Identifier id, String containerKind, int stackSize, 
     }
 
     public record Seal(boolean startsSealed, boolean reopenable, String sealQuality) {
+    }
+
+    public record StateStorage(PlacedBlock placedBlock) {
+    }
+
+    public record PlacedBlock(boolean enabled, Identifier blockId, Identifier blockEntityId,
+            boolean syncToClient, boolean dropsKeepContents) {
     }
 }
