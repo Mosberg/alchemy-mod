@@ -21,7 +21,7 @@ import net.minecraft.util.Identifier;
  */
 public final class DataLoader {
     private static final Gson GSON = new Gson();
-    private static final String ALCOHOL_PATH = "data/alchemy/alcohol/";
+    private static final String ALCOHOL_PATH = "data/alchemy/beverages/";
     private static final String CONTAINER_PATH = "data/alchemy/containers/";
 
     private DataLoader() {}
@@ -49,7 +49,7 @@ public final class DataLoader {
 
         for (String id : beerIds) {
             try {
-                loadBeverage("beers/" + id);
+                loadBeverage("beer/" + id);
             } catch (Exception e) {
                 Alchemy.LOGGER.error("Failed to load beverage definition: {}", id, e);
             }
@@ -57,7 +57,7 @@ public final class DataLoader {
 
         for (String id : spiritIds) {
             try {
-                loadBeverage("spirits/" + id);
+                loadBeverage("spirit/" + id);
             } catch (Exception e) {
                 Alchemy.LOGGER.error("Failed to load beverage definition: {}", id, e);
             }

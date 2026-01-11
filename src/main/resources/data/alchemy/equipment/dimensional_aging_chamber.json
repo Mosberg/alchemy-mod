@@ -1,0 +1,263 @@
+{
+  "type": "alchemy:equipment",
+  "schema_version": 1,
+  "id": "alchemy:dimensional_aging_chamber",
+  "name_key": "block.alchemy.dimensional_aging_chamber",
+  "rarity": "legendary",
+  "material": "obsidian_steel_alloy",
+  "function": "dimensional_time_acceleration_aging",
+  "category": "equipment",
+  "placement": {
+    "kind": "block",
+    "block_id": "alchemy:dimensional_aging_chamber",
+    "block_entity_id": "alchemy:dimensional_aging_chamber",
+    "facing": "none",
+    "requires_solid_support": false
+  },
+  "inventory": {
+    "capacity": 54,
+    "stack_limit_per_slot": 1,
+    "accepts_item_tags": [
+      "alchemy:ageable",
+      "alchemy:container",
+      "alchemy:barrel",
+      "alchemy:keg"
+    ],
+    "rejects_item_tags": ["alchemy:instant", "alchemy:unstable"],
+    "slot_roles": {
+      "0-44": "aging",
+      "45-48": "catalyst",
+      "49-50": "power",
+      "51-53": "upgrade"
+    },
+    "quick_move": {
+      "enabled": true,
+      "priority": ["power", "catalyst", "aging", "upgrade"]
+    }
+  },
+  "aging": {
+    "recipe_source": "automatic",
+    "recipe_type": "alchemy:dimensional_aging",
+    "aging_multiplier": 100.0,
+    "progress_persists": true,
+    "quality": {
+      "base_quality": 0.95,
+      "max_quality": 1.0,
+      "quality_variance": 0.02,
+      "skill_influence": 0.1,
+      "time_bonus": 0.001,
+      "dimensional_bonus": 0.2
+    },
+    "spoilage": {
+      "enabled": false
+    },
+    "environment_modifiers": {
+      "temperature": {
+        "optimal_range": [15, 18],
+        "penalty_per_degree": 0.0,
+        "auto_regulation": true,
+        "regulation_power": 1.0,
+        "perfect_temperature": true
+      },
+      "humidity": {
+        "optimal_range": [55, 60],
+        "affects_quality": true,
+        "auto_regulation": true,
+        "perfect_humidity": true
+      },
+      "pressure": {
+        "optimal_range": [1.0, 1.0],
+        "affects_carbonation": false,
+        "auto_control": true
+      },
+      "temporal_distortion": {
+        "enabled": true,
+        "rate_multiplier": 100.0,
+        "max_multiplier": 1000.0,
+        "stability": 0.99
+      }
+    }
+  },
+  "interaction": {
+    "right_click_action": "open_ui",
+    "shift_right_click_action": "toggle_time_acceleration",
+    "allow_automation": true,
+    "requires_dimensional_key": true
+  },
+  "automation": {
+    "supports_hoppers": false,
+    "supports_pipes": true,
+    "redstone_controllable": true,
+    "comparator_output": "average_quality",
+    "pipe_sides": {
+      "north": "input",
+      "south": "output",
+      "east": "catalyst",
+      "west": "power"
+    },
+    "dimensional_network": {
+      "enabled": true,
+      "network_id": "alchemy_aging",
+      "shares_power": true,
+      "shares_inventory": false,
+      "remote_monitoring": true
+    },
+    "energy_system": {
+      "required": true,
+      "type": "dimensional_energy",
+      "capacity": 10000000,
+      "consumption_per_tick": 500,
+      "consumption_per_aging_tick": 100,
+      "accepts_from": ["all"],
+      "buffer_enabled": true
+    }
+  },
+  "upgrades": {
+    "enabled": true,
+    "slots": 5,
+    "allowed_upgrade_tags": [
+      "alchemy:aging_upgrade",
+      "alchemy:dimensional_upgrade",
+      "alchemy:time_upgrade",
+      "alchemy:capacity_upgrade",
+      "alchemy:quality_upgrade",
+      "alchemy:stability_upgrade"
+    ],
+    "effects": {
+      "time_acceleration": {
+        "tier_1": 50.0,
+        "tier_2": 100.0,
+        "tier_3": 250.0,
+        "tier_4": 500.0,
+        "tier_5": 1000.0
+      },
+      "quality_preservation": {
+        "tier_1": 0.02,
+        "tier_2": 0.05,
+        "tier_3": 0.1,
+        "tier_4": 0.15,
+        "tier_5": 0.25
+      },
+      "stability_enhancement": {
+        "tier_1": 0.01,
+        "tier_2": 0.03,
+        "tier_3": 0.05,
+        "tier_4": 0.08,
+        "tier_5": 0.1
+      },
+      "capacity_expansion": {
+        "tier_1": 9,
+        "tier_2": 18,
+        "tier_3": 27,
+        "tier_4": 36,
+        "tier_5": 54
+      },
+      "energy_efficiency": {
+        "tier_1": 0.1,
+        "tier_2": 0.2,
+        "tier_3": 0.35,
+        "tier_4": 0.5,
+        "tier_5": 0.7
+      }
+    },
+    "legendary_upgrades": {
+      "temporal_perfection": {
+        "quality_floor": 0.95,
+        "prevents_degradation": true,
+        "energy_cost_multiplier": 2.0
+      },
+      "infinite_pocket": {
+        "capacity_multiplier": 10.0,
+        "dimensional_compression": true,
+        "weight_reduction": 0.99
+      },
+      "chrono_cascade": {
+        "time_multiplier": 5.0,
+        "parallel_processing": true,
+        "stability_cost": 0.1
+      }
+    }
+  },
+  "client": {
+    "screen_id": "alchemy:dimensional_aging_chamber_screen",
+    "show_progress": true,
+    "show_quality": true,
+    "show_environment_state": true,
+    "block_entity_renderer": "alchemy:dimensional_chamber_renderer",
+    "animated": true,
+    "particles": true,
+    "particle_types": [
+      "minecraft:portal",
+      "minecraft:end_rod",
+      "minecraft:enchanted_hit",
+      "alchemy:temporal_distortion"
+    ],
+    "sounds": {
+      "working": "alchemy:dimensional_hum",
+      "complete": "alchemy:temporal_chime",
+      "failure": "alchemy:dimensional_collapse"
+    },
+    "visual_effects": {
+      "portal_effect": true,
+      "time_distortion": true,
+      "quality_aura": true,
+      "energy_flow": true
+    }
+  },
+  "gates": {
+    "requires_feature_flag": "alchemy:dimensional_brewing",
+    "requires_gamerule_true": "doAlchemyBrewing",
+    "requires_mod_loaded": ["alchemy", "alchemy_dimensional"],
+    "min_player_level": 75,
+    "world_whitelist": ["overworld", "the_end"]
+  },
+  "crafting": {
+    "recipe_type": "alchemy:dimensional_crafting",
+    "recipe_id": "alchemy:dimensional_aging_chamber",
+    "ingredients": {
+      "N": "minecraft:netherite_block",
+      "O": "minecraft:crying_obsidian",
+      "E": "minecraft:end_crystal",
+      "D": "minecraft:dragon_egg",
+      "S": "minecraft:nether_star",
+      "C": "alchemy:mystical_crystal_barrel",
+      "T": "alchemy:temporal_essence",
+      "P": "minecraft:end_portal_frame"
+    },
+    "pattern": ["NON", "ECE", "TSP"],
+    "requires_ritual": true,
+    "ritual_time": 12000
+  },
+  "meta": {
+    "display_name": "Dimensional Aging Chamber",
+    "notes": "Ultimate aging equipment that manipulates time itself. Ages contents 100-1000x faster in a pocket dimension with perfect conditions."
+  },
+  "x-dimensional": {
+    "pocket_dimension": {
+      "enabled": true,
+      "dimension_id": "alchemy:aging_pocket",
+      "time_flow": 100.0,
+      "stability": 0.99,
+      "energy_per_tick": 500
+    },
+    "safety_systems": {
+      "emergency_shutdown": true,
+      "temporal_anchor": true,
+      "anti_paradox": true,
+      "rollback_capability": true,
+      "max_rollback_minutes": 30
+    },
+    "monitoring": {
+      "real_time_analytics": true,
+      "predictive_completion": true,
+      "quality_forecasting": true,
+      "anomaly_detection": true
+    },
+    "network_features": {
+      "remote_access": true,
+      "cloud_storage": false,
+      "multi_user": true,
+      "access_control": "owner_only"
+    }
+  }
+}

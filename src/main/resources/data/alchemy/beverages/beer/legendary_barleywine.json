@@ -1,0 +1,256 @@
+{
+  "type": "alchemy:alcohol",
+  "schema_version": 1,
+  "id": "alchemy:legendary_barleywine",
+  "category": "beer",
+  "style": "English Barleywine",
+  "container": "alchemy:oak_barrel",
+  "rarity": "legendary",
+  "stack_size": 1,
+  "meta": {
+    "display_name": "Legendary Barleywine",
+    "icon": "alchemy:legendary_barleywine_icon",
+    "sort_order": 1000,
+    "hidden": false,
+    "notes": "Requires master brewing skill and extensive aging. Only brewable during full moon.",
+    "source": {
+      "pack": "alchemy_core",
+      "author": "Alchemy Team",
+      "homepage": "https://alchemy.invalid"
+    }
+  },
+  "brewing": {
+    "brew_time_seconds": 1800,
+    "brew_time_ticks": 36000,
+    "station_tags": [
+      "alchemy:master_brewery",
+      "alchemy:legendary_brewery",
+      "alchemy:temperature_controlled"
+    ],
+    "difficulty": 10,
+    "batch_size_servings": 16,
+    "byproducts": [
+      {
+        "item": "alchemy:spent_grain_premium",
+        "count": 8,
+        "chance": 1.0
+      },
+      {
+        "item": "alchemy:yeast_culture_rare",
+        "count": 2,
+        "chance": 0.4
+      },
+      {
+        "item": "minecraft:experience_bottle",
+        "count": 1,
+        "chance": 0.15
+      }
+    ],
+    "failure": {
+      "enabled": true,
+      "base_fail_chance": 0.25,
+      "outcome": "alchemy:corrupted_barleywine",
+      "extra_effects": [
+        {
+          "effect": "minecraft:wither",
+          "duration": 600,
+          "amplifier": 1,
+          "chance": 1.0,
+          "show_particles": true,
+          "show_icon": true,
+          "ambient": false
+        },
+        {
+          "effect": "minecraft:slowness",
+          "duration": 1200,
+          "amplifier": 2,
+          "chance": 0.8,
+          "show_particles": true,
+          "show_icon": true,
+          "ambient": false
+        }
+      ]
+    }
+  },
+  "stats": {
+    "alcohol_by_volume": 12.5,
+    "strength": 0.75,
+    "intoxication": {
+      "value": 0.55,
+      "decay_rate_per_tick": 0.0002
+    },
+    "nutrition": {
+      "hunger": 6,
+      "saturation": 8.0
+    }
+  },
+  "quality": {
+    "tier": "legendary",
+    "supports_quality": true,
+    "quality_on_brew": 0.5,
+    "quality_floor": 0.3,
+    "quality_ceiling": 1.0
+  },
+  "aging": {
+    "supported": true,
+    "min_days": 30,
+    "max_days": 365,
+    "preferred_container_tags": [
+      "alchemy:barrel",
+      "alchemy:oak",
+      "alchemy:cherry",
+      "alchemy:aged_wood"
+    ],
+    "quality_bonus_per_day": 0.002,
+    "risk_per_day_open": 0.03
+  },
+  "spoilage": {
+    "enabled": true,
+    "base_decay_per_day": 0.005,
+    "opened_decay_multiplier": 5.0,
+    "temperature": {
+      "preferred": "cellar",
+      "hot_decay_multiplier": 8.0,
+      "cold_decay_multiplier": 0.2
+    }
+  },
+  "carbonation": {
+    "level": "low",
+    "foam": {
+      "enabled": true,
+      "spill_chance_on_open": 0.02
+    }
+  },
+  "visuals": {
+    "liquid_color": 9057088,
+    "bubbles": "light",
+    "glow": "strong",
+    "particle": "minecraft:enchanted_hit"
+  },
+  "effects": [
+    {
+      "effect": "minecraft:resistance",
+      "duration": 2400,
+      "amplifier": 1,
+      "chance": 1.0,
+      "show_particles": false,
+      "show_icon": true,
+      "ambient": true
+    },
+    {
+      "effect": "minecraft:strength",
+      "duration": 1800,
+      "amplifier": 1,
+      "chance": 0.95,
+      "show_particles": false,
+      "show_icon": true,
+      "ambient": true
+    },
+    {
+      "effect": "minecraft:regeneration",
+      "duration": 1200,
+      "amplifier": 1,
+      "chance": 0.85,
+      "show_particles": false,
+      "show_icon": true,
+      "ambient": true
+    },
+    {
+      "effect": "minecraft:luck",
+      "duration": 3600,
+      "amplifier": 2,
+      "chance": 0.5,
+      "show_particles": true,
+      "show_icon": true,
+      "ambient": true
+    },
+    {
+      "effect": "minecraft:slowness",
+      "duration": 600,
+      "amplifier": 0,
+      "chance": 0.3,
+      "show_particles": false,
+      "show_icon": true,
+      "ambient": false
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "minecraft:wheat",
+      "count": 16
+    },
+    {
+      "item": "minecraft:golden_carrot",
+      "count": 4
+    },
+    {
+      "item": "minecraft:honey_bottle",
+      "count": 3
+    },
+    {
+      "item": "alchemy:premium_yeast",
+      "count": 2
+    },
+    {
+      "item": "minecraft:oak_sapling",
+      "count": 1
+    },
+    {
+      "item": "minecraft:ghast_tear",
+      "count": 1
+    }
+  ],
+  "tags": [
+    "alchemy:beer",
+    "alchemy:barleywine",
+    "alchemy:legendary",
+    "alchemy:aged_required",
+    "alchemy:master_craft",
+    "alchemy:full_moon_only"
+  ],
+  "loot": {
+    "weight": 1,
+    "tables": [
+      "alchemy:chests/legendary_brewery",
+      "alchemy:chests/ancient_cellar",
+      "alchemy:boss_drops/brewmaster"
+    ]
+  },
+  "gates": {
+    "requires_feature_flag": "alchemy:legendary_brewing",
+    "requires_gamerule_true": "doAlchemyBrewing",
+    "requires_mod_loaded": ["alchemy"],
+    "min_player_level": 50,
+    "world_whitelist": ["overworld"]
+  },
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true,
+    "show_spoilage_hint": true,
+    "show_alcohol_by_volume": true,
+    "tooltip_theme": "detailed"
+  },
+  "text": {
+    "name_key": "item.alchemy.legendary_barleywine",
+    "lore_key": "item.alchemy.legendary_barleywine.lore",
+    "tooltip_key": "item.alchemy.legendary_barleywine.tooltip",
+    "effect_text_key": "item.alchemy.legendary_barleywine.effects",
+    "brew_time_text_key": "item.alchemy.legendary_barleywine.brew_time",
+    "ingredients_text_key": "item.alchemy.legendary_barleywine.ingredients",
+    "container_text_key": "item.alchemy.legendary_barleywine.container",
+    "rarity_text_key": "item.alchemy.legendary_barleywine.rarity",
+    "category_text_key": "item.alchemy.legendary_barleywine.category",
+    "flavor_text_key": "item.alchemy.legendary_barleywine.flavor",
+    "warning_key": "item.alchemy.legendary_barleywine.warning",
+    "crafting_instructions_key": "item.alchemy.legendary_barleywine.crafting"
+  },
+  "config": {
+    "enabled": true,
+    "override_rarity": "legendary",
+    "override_stack_size": 1,
+    "override_loot_weight": 1,
+    "disable_random_failures": false,
+    "disable_spoilage": false
+  }
+}

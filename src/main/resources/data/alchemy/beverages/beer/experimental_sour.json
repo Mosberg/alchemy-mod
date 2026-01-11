@@ -1,0 +1,275 @@
+{
+  "type": "alchemy:alcohol",
+  "schema_version": 1,
+  "id": "alchemy:experimental_sour",
+  "category": "beer",
+  "style": "Wild Fermented Sour Ale",
+  "container": "alchemy:oak_barrel",
+  "rarity": "rare",
+  "stack_size": 6,
+  "meta": {
+    "display_name": "Experimental Sour",
+    "icon": "alchemy:experimental_sour_icon",
+    "sort_order": 750,
+    "hidden": false,
+    "notes": "Unpredictable wild fermentation. Results vary wildly.",
+    "source": {
+      "pack": "alchemy_experimental",
+      "author": "Alchemy Brewers Guild",
+      "homepage": "https://alchemy.invalid/experimental"
+    }
+  },
+  "brewing": {
+    "brew_time_seconds": 1200,
+    "brew_time_ticks": 24000,
+    "station_tags": [
+      "alchemy:wild_fermenter",
+      "alchemy:open_fermenter",
+      "alchemy:experimental_brewery"
+    ],
+    "difficulty": 8,
+    "batch_size_servings": 12,
+    "byproducts": [
+      {
+        "item": "alchemy:wild_yeast",
+        "count": 4,
+        "chance": 0.5
+      },
+      {
+        "item": "alchemy:bacterial_culture",
+        "count": 2,
+        "chance": 0.3
+      },
+      {
+        "item": "alchemy:funk_essence",
+        "count": 1,
+        "chance": 0.15
+      },
+      {
+        "item": "minecraft:rotten_flesh",
+        "count": 1,
+        "chance": 0.1
+      }
+    ],
+    "failure": {
+      "enabled": true,
+      "base_fail_chance": 0.3,
+      "outcome": "alchemy:vinegar",
+      "extra_effects": [
+        {
+          "effect": "minecraft:hunger",
+          "duration": 800,
+          "amplifier": 2,
+          "chance": 1.0,
+          "show_particles": true,
+          "show_icon": true,
+          "ambient": false
+        },
+        {
+          "effect": "minecraft:nausea",
+          "duration": 600,
+          "amplifier": 1,
+          "chance": 0.8,
+          "show_particles": true,
+          "show_icon": true,
+          "ambient": false
+        }
+      ]
+    }
+  },
+  "stats": {
+    "alcohol_by_volume": 6.8,
+    "strength": 0.35,
+    "intoxication": {
+      "value": 0.2,
+      "decay_rate_per_tick": 0.0008
+    },
+    "nutrition": {
+      "hunger": 3,
+      "saturation": 2.0
+    }
+  },
+  "quality": {
+    "tier": "experimental",
+    "supports_quality": true,
+    "quality_on_brew": 0.4,
+    "quality_floor": 0.1,
+    "quality_ceiling": 0.98
+  },
+  "aging": {
+    "supported": true,
+    "min_days": 60,
+    "max_days": 730,
+    "preferred_container_tags": [
+      "alchemy:barrel",
+      "alchemy:oak",
+      "alchemy:wine_barrel"
+    ],
+    "quality_bonus_per_day": 0.001,
+    "risk_per_day_open": 0.08
+  },
+  "spoilage": {
+    "enabled": true,
+    "base_decay_per_day": 0.03,
+    "opened_decay_multiplier": 6.0,
+    "temperature": {
+      "preferred": "ambient",
+      "hot_decay_multiplier": 4.0,
+      "cold_decay_multiplier": 0.8
+    }
+  },
+  "carbonation": {
+    "level": "high",
+    "foam": {
+      "enabled": true,
+      "spill_chance_on_open": 0.25
+    }
+  },
+  "visuals": {
+    "liquid_color": 15658734,
+    "bubbles": "heavy",
+    "glow": "none",
+    "particle": "minecraft:bubble_pop"
+  },
+  "effects": [
+    {
+      "effect": "minecraft:jump_boost",
+      "duration": 1200,
+      "amplifier": 1,
+      "chance": 0.6,
+      "show_particles": true,
+      "show_icon": true,
+      "ambient": false
+    },
+    {
+      "effect": "minecraft:speed",
+      "duration": 800,
+      "amplifier": 0,
+      "chance": 0.5,
+      "show_particles": false,
+      "show_icon": true,
+      "ambient": true
+    },
+    {
+      "effect": "minecraft:haste",
+      "duration": 1000,
+      "amplifier": 0,
+      "chance": 0.4,
+      "show_particles": false,
+      "show_icon": true,
+      "ambient": true
+    },
+    {
+      "effect": "minecraft:nausea",
+      "duration": 200,
+      "amplifier": 0,
+      "chance": 0.25,
+      "show_particles": true,
+      "show_icon": true,
+      "ambient": false
+    },
+    {
+      "effect": "minecraft:levitation",
+      "duration": 100,
+      "amplifier": 0,
+      "chance": 0.05,
+      "show_particles": true,
+      "show_icon": true,
+      "ambient": false
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "minecraft:wheat",
+      "count": 6
+    },
+    {
+      "item": "minecraft:apple",
+      "count": 4
+    },
+    {
+      "item": "minecraft:sweet_berries",
+      "count": 3
+    },
+    {
+      "item": "alchemy:lactobacillus",
+      "count": 1
+    },
+    {
+      "item": "alchemy:wild_yeast",
+      "count": 1
+    }
+  ],
+  "tags": [
+    "alchemy:beer",
+    "alchemy:sour",
+    "alchemy:wild_fermented",
+    "alchemy:experimental",
+    "alchemy:unpredictable",
+    "alchemy:long_aged"
+  ],
+  "loot": {
+    "weight": 4,
+    "tables": [
+      "alchemy:chests/experimental_brewery",
+      "alchemy:chests/abandoned_cellar"
+    ]
+  },
+  "gates": {
+    "requires_feature_flag": "alchemy:experimental_brewing",
+    "requires_gamerule_true": "doAlchemyBrewing",
+    "min_player_level": 30
+  },
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true,
+    "show_spoilage_hint": true,
+    "show_alcohol_by_volume": true,
+    "tooltip_theme": "detailed"
+  },
+  "text": {
+    "name_key": "item.alchemy.experimental_sour",
+    "lore_key": "item.alchemy.experimental_sour.lore",
+    "tooltip_key": "item.alchemy.experimental_sour.tooltip",
+    "effect_text_key": "item.alchemy.experimental_sour.effects",
+    "brew_time_text_key": "item.alchemy.experimental_sour.brew_time",
+    "ingredients_text_key": "item.alchemy.experimental_sour.ingredients",
+    "container_text_key": "item.alchemy.experimental_sour.container",
+    "rarity_text_key": "item.alchemy.experimental_sour.rarity",
+    "category_text_key": "item.alchemy.experimental_sour.category",
+    "flavor_text_key": "item.alchemy.experimental_sour.flavor",
+    "warning_key": "item.alchemy.experimental_sour.warning",
+    "crafting_instructions_key": "item.alchemy.experimental_sour.crafting"
+  },
+  "config": {
+    "enabled": true,
+    "disable_random_failures": false,
+    "disable_spoilage": false
+  },
+  "_experimental_features": {
+    "random_mutation": {
+      "enabled": true,
+      "mutation_chance": 0.1,
+      "possible_mutations": [
+        "extra_sour",
+        "extra_funky",
+        "extra_dry",
+        "extra_sweet",
+        "spontaneous_carbonation"
+      ]
+    },
+    "batch_variation": {
+      "enabled": true,
+      "variation_factor": 0.3,
+      "affects_quality": true,
+      "affects_effects": true,
+      "affects_abv": true
+    },
+    "environmental_influence": {
+      "biome_affects_flavor": true,
+      "weather_affects_fermentation": true,
+      "moon_phase_affects_quality": true
+    }
+  }
+}

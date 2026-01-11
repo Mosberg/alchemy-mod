@@ -1,0 +1,240 @@
+{
+  "type": "alchemy:equipment",
+  "schema_version": 1,
+  "id": "alchemy:automated_master_brewery",
+  "name_key": "block.alchemy.automated_master_brewery",
+  "rarity": "epic",
+  "material": "reinforced_steel",
+  "function": "advanced_fermentation_and_brewing",
+  "category": "equipment",
+  "placement": {
+    "kind": "block",
+    "block_id": "alchemy:automated_master_brewery",
+    "block_entity_id": "alchemy:automated_master_brewery",
+    "facing": "horizontal",
+    "requires_solid_support": true
+  },
+  "inventory": {
+    "capacity": 27,
+    "stack_limit_per_slot": 64,
+    "accepts_item_tags": [
+      "alchemy:fermentable",
+      "alchemy:ingredient",
+      "alchemy:catalyst",
+      "alchemy:enhancer",
+      "alchemy:yeast"
+    ],
+    "rejects_item_tags": ["alchemy:non_fermentable", "alchemy:explosive"],
+    "slot_roles": {
+      "0-14": "input",
+      "15-17": "catalyst",
+      "18-19": "enhancer",
+      "20": "fuel",
+      "21-23": "upgrade",
+      "24-26": "output"
+    },
+    "quick_move": {
+      "enabled": true,
+      "priority": ["fuel", "enhancer", "catalyst", "input", "output"]
+    }
+  },
+  "aging": {
+    "recipe_source": "data",
+    "recipe_type": "alchemy:advanced_fermentation",
+    "aging_multiplier": 3.0,
+    "progress_persists": true,
+    "quality": {
+      "base_quality": 0.8,
+      "max_quality": 1.0,
+      "quality_variance": 0.05,
+      "skill_influence": 0.4,
+      "enhancer_bonus": 0.15,
+      "perfect_conditions_bonus": 0.1
+    },
+    "spoilage": {
+      "enabled": true,
+      "base_spoilage_rate": 0.005,
+      "auto_preservation": true,
+      "preservation_power": 0.8
+    },
+    "environment_modifiers": {
+      "temperature": {
+        "optimal_range": [18, 22],
+        "penalty_per_degree": 0.01,
+        "auto_regulation": true,
+        "regulation_power": 0.9
+      },
+      "humidity": {
+        "optimal_range": [50, 65],
+        "affects_quality": true,
+        "auto_regulation": true
+      },
+      "pressure": {
+        "optimal_range": [0.9, 1.1],
+        "affects_carbonation": true,
+        "auto_control": true
+      },
+      "light_level": {
+        "optimal_range": [0, 4],
+        "affects_quality": true
+      }
+    }
+  },
+  "wood_variants": {
+    "supports_variants": true,
+    "allowed_types": [
+      "oak",
+      "spruce",
+      "birch",
+      "jungle",
+      "acacia",
+      "dark_oak",
+      "cherry",
+      "mangrove"
+    ],
+    "wood_affects_flavor": true,
+    "flavor_intensity": 0.6
+  },
+  "interaction": {
+    "right_click_action": "open_ui",
+    "shift_right_click_action": "toggle_automation",
+    "allow_automation": true,
+    "redstone_signal": "toggle_processing"
+  },
+  "automation": {
+    "supports_hoppers": true,
+    "supports_pipes": true,
+    "redstone_controllable": true,
+    "comparator_output": "processing_progress",
+    "pipe_sides": {
+      "top": "input",
+      "bottom": "output",
+      "north": "catalyst",
+      "south": "fuel",
+      "east": "enhancer",
+      "west": "upgrade"
+    },
+    "auto_crafting": {
+      "enabled": true,
+      "recipe_memory": 9,
+      "pattern_matching": "smart",
+      "batch_processing": true,
+      "parallel_batches": 3
+    },
+    "scheduling": {
+      "enabled": true,
+      "max_queued_recipes": 16,
+      "priority_system": true,
+      "time_based_execution": true
+    },
+    "energy_system": {
+      "required": true,
+      "type": "forge_energy",
+      "capacity": 100000,
+      "consumption_per_tick": 50,
+      "accepts_from": ["top", "bottom"]
+    }
+  },
+  "upgrades": {
+    "enabled": true,
+    "slots": 4,
+    "allowed_upgrade_tags": [
+      "alchemy:brewery_upgrade",
+      "alchemy:speed_upgrade",
+      "alchemy:efficiency_upgrade",
+      "alchemy:quality_upgrade",
+      "alchemy:automation_upgrade",
+      "alchemy:capacity_upgrade"
+    ],
+    "effects": {
+      "speed_upgrade": {
+        "tier_1": 0.25,
+        "tier_2": 0.5,
+        "tier_3": 1.0,
+        "tier_4": 2.0
+      },
+      "quality_upgrade": {
+        "tier_1": 0.05,
+        "tier_2": 0.1,
+        "tier_3": 0.2,
+        "tier_4": 0.35
+      },
+      "efficiency_upgrade": {
+        "tier_1": 0.1,
+        "tier_2": 0.25,
+        "tier_3": 0.5,
+        "tier_4": 0.75
+      },
+      "capacity_upgrade": {
+        "tier_1": 1,
+        "tier_2": 2,
+        "tier_3": 4,
+        "tier_4": 8
+      }
+    },
+    "synergy_bonuses": {
+      "speed_quality": 0.15,
+      "speed_efficiency": 0.2,
+      "quality_efficiency": 0.1,
+      "all_three": 0.3
+    }
+  },
+  "client": {
+    "screen_id": "alchemy:automated_master_brewery_screen",
+    "show_progress": true,
+    "show_quality": true,
+    "show_environment_state": true,
+    "block_entity_renderer": "alchemy:master_brewery_renderer",
+    "animated": true,
+    "particles": true,
+    "particle_types": ["minecraft:bubble", "minecraft:splash", "alchemy:steam"],
+    "sounds": {
+      "working": "alchemy:brewery_working",
+      "complete": "alchemy:brewery_complete",
+      "failure": "alchemy:brewery_failure"
+    }
+  },
+  "gates": {
+    "requires_feature_flag": "alchemy:advanced_brewing",
+    "requires_gamerule_true": "doAlchemyBrewing",
+    "requires_mod_loaded": ["alchemy"],
+    "min_player_level": 35
+  },
+  "crafting": {
+    "recipe_type": "minecraft:crafting_shaped",
+    "recipe_id": "alchemy:automated_master_brewery",
+    "ingredients": {
+      "S": "minecraft:netherite_ingot",
+      "C": "minecraft:copper_block",
+      "G": "minecraft:tinted_glass",
+      "F": "alchemy:oak_fermenter",
+      "D": "minecraft:diamond",
+      "R": "minecraft:redstone_block",
+      "H": "minecraft:hopper"
+    },
+    "pattern": ["SGS", "CFD", "RHR"]
+  },
+  "meta": {
+    "display_name": "Automated Master Brewery",
+    "notes": "Top-tier brewing station with full automation, quality control, and multi-batch processing"
+  },
+  "x-advanced": {
+    "recipe_learning": {
+      "enabled": true,
+      "learns_from_player": true,
+      "shares_knowledge": true,
+      "network_range": 64
+    },
+    "quality_analytics": {
+      "tracks_history": true,
+      "max_records": 1000,
+      "provides_suggestions": true
+    },
+    "maintenance": {
+      "required": true,
+      "interval_hours": 168,
+      "degradation_rate": 0.001,
+      "cleaning_items": ["minecraft:water_bucket", "alchemy:cleaning_solution"]
+    }
+  }
+}
