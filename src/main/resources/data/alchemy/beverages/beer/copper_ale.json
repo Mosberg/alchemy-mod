@@ -1,0 +1,141 @@
+{
+  "type": "alchemy:alcohol",
+  "schema_version": 1,
+  "id": "alchemy:copper_ale",
+  "category": "beer",
+  "style": "Amber Ale",
+  "container": "alchemy:aluminum_can",
+  "rarity": "common",
+  "stack_size": 16,
+  "brewing": {
+    "brew_time_seconds": 300,
+    "brew_time_ticks": 6000,
+    "station_tags": ["alchemy:brewing_stand", "alchemy:fermenter"],
+    "difficulty": 2,
+    "batch_size_servings": 4,
+    "byproducts": [
+      {
+        "item": "minecraft:wheat_seeds",
+        "count": 2,
+        "chance": 0.3
+      }
+    ],
+    "failure": {
+      "enabled": true,
+      "base_fail_chance": 0.05,
+      "outcome": "alchemy:spoiled_brew",
+      "extra_effects": [
+        {
+          "effect": "minecraft:nausea",
+          "duration": 200,
+          "amplifier": 0,
+          "chance": 1.0,
+          "show_particles": true,
+          "show_icon": true,
+          "ambient": false
+        }
+      ]
+    }
+  },
+  "stats": {
+    "alcohol_by_volume": 5.2,
+    "strength": 0.25,
+    "intoxication": {
+      "value": 0.15,
+      "decay_rate_per_tick": 0.001
+    },
+    "nutrition": {
+      "hunger": 2,
+      "saturation": 1.5
+    }
+  },
+  "quality": {
+    "tier": "standard",
+    "supports_quality": true,
+    "quality_on_brew": 0.7,
+    "quality_floor": 0.5,
+    "quality_ceiling": 0.95
+  },
+  "aging": {
+    "supported": false
+  },
+  "spoilage": {
+    "enabled": true,
+    "base_decay_per_day": 0.02,
+    "opened_decay_multiplier": 3.0,
+    "temperature": {
+      "preferred": "cool",
+      "hot_decay_multiplier": 2.5,
+      "cold_decay_multiplier": 0.5
+    }
+  },
+  "carbonation": {
+    "level": "medium",
+    "foam": {
+      "enabled": true,
+      "spill_chance_on_open": 0.1
+    }
+  },
+  "visuals": {
+    "liquid_color": 13395456,
+    "bubbles": "medium",
+    "glow": "none",
+    "particle": "minecraft:bubble"
+  },
+  "effects": [
+    {
+      "effect": "minecraft:regeneration",
+      "duration": 100,
+      "amplifier": 0,
+      "chance": 0.8,
+      "show_particles": true,
+      "show_icon": true,
+      "ambient": false
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "minecraft:wheat",
+      "count": 3
+    },
+    {
+      "item": "minecraft:sugar",
+      "count": 1
+    },
+    {
+      "item": "minecraft:copper_ingot",
+      "count": 1
+    }
+  ],
+  "tags": ["alchemy:beer", "alchemy:amber", "alchemy:craftable"],
+  "loot": {
+    "weight": 10,
+    "tables": ["alchemy:chests/tavern", "alchemy:chests/brewery"]
+  },
+  "gates": {
+    "requires_feature_flag": "alchemy:brewing",
+    "requires_gamerule_true": "doAlchemyBrewing"
+  },
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true,
+    "show_spoilage_hint": true,
+    "show_alcohol_by_volume": true,
+    "tooltip_theme": "default"
+  },
+  "text": {
+    "name_key": "item.alchemy.copper_ale",
+    "lore_key": "item.alchemy.copper_ale.lore",
+    "tooltip_key": "item.alchemy.copper_ale.tooltip",
+    "effect_text_key": "item.alchemy.copper_ale.effects",
+    "brew_time_text_key": "item.alchemy.copper_ale.brew_time",
+    "ingredients_text_key": "item.alchemy.copper_ale.ingredients",
+    "container_text_key": "item.alchemy.copper_ale.container",
+    "rarity_text_key": "item.alchemy.copper_ale.rarity",
+    "category_text_key": "item.alchemy.copper_ale.category",
+    "flavor_text_key": "item.alchemy.copper_ale.flavor",
+    "warning_key": "item.alchemy.copper_ale.warning",
+    "crafting_instructions_key": "item.alchemy.copper_ale.crafting"
+  }
+}

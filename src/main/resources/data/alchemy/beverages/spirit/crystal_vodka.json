@@ -1,0 +1,140 @@
+{
+  "type": "alchemy:alcohol",
+  "schema_version": 1,
+  "id": "alchemy:crystal_vodka",
+  "category": "spirit",
+  "style": "Pure Vodka",
+  "container": "alchemy:glass_flask",
+  "rarity": "uncommon",
+  "stack_size": 16,
+  "brewing": {
+    "brew_time_seconds": 900,
+    "brew_time_ticks": 18000,
+    "station_tags": ["alchemy:distillery", "alchemy:still"],
+    "difficulty": 5,
+    "batch_size_servings": 6,
+    "byproducts": [],
+    "failure": {
+      "enabled": true,
+      "base_fail_chance": 0.12,
+      "outcome": "alchemy:methanol_poison",
+      "extra_effects": [
+        {
+          "effect": "minecraft:poison",
+          "duration": 600,
+          "amplifier": 2,
+          "chance": 1.0,
+          "show_particles": true,
+          "show_icon": true,
+          "ambient": false
+        }
+      ]
+    }
+  },
+  "stats": {
+    "alcohol_by_volume": 40.0,
+    "strength": 0.8,
+    "intoxication": {
+      "value": 0.6,
+      "decay_rate_per_tick": 0.0003
+    },
+    "nutrition": {
+      "hunger": 0,
+      "saturation": 0.0
+    }
+  },
+  "quality": {
+    "tier": "refined",
+    "supports_quality": true,
+    "quality_on_brew": 0.75,
+    "quality_floor": 0.6,
+    "quality_ceiling": 1.0
+  },
+  "aging": {
+    "supported": false
+  },
+  "spoilage": {
+    "enabled": false
+  },
+  "carbonation": {
+    "level": "none",
+    "foam": {
+      "enabled": false,
+      "spill_chance_on_open": 0.0
+    }
+  },
+  "visuals": {
+    "liquid_color": 15790320,
+    "bubbles": "none",
+    "glow": "subtle",
+    "particle": "minecraft:splash"
+  },
+  "effects": [
+    {
+      "effect": "minecraft:slowness",
+      "duration": 400,
+      "amplifier": 0,
+      "chance": 0.5,
+      "show_particles": true,
+      "show_icon": true,
+      "ambient": false
+    },
+    {
+      "effect": "minecraft:fire_resistance",
+      "duration": 1200,
+      "amplifier": 0,
+      "chance": 0.3,
+      "show_particles": false,
+      "show_icon": true,
+      "ambient": true
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "minecraft:potato",
+      "count": 8
+    },
+    {
+      "item": "minecraft:sugar",
+      "count": 2
+    },
+    {
+      "item": "minecraft:ice",
+      "count": 4
+    }
+  ],
+  "tags": [
+    "alchemy:spirit",
+    "alchemy:vodka",
+    "alchemy:distilled",
+    "alchemy:clear"
+  ],
+  "loot": {
+    "weight": 5,
+    "tables": ["alchemy:chests/distillery", "alchemy:chests/tavern"]
+  },
+  "gates": {
+    "requires_feature_flag": "alchemy:distillation",
+    "requires_gamerule_true": "doAlchemyBrewing",
+    "min_player_level": 15
+  },
+  "client": {
+    "use_liquid_tint": true,
+    "show_strength_line": true,
+    "show_quality_line": true,
+    "show_alcohol_by_volume": true,
+    "tooltip_theme": "default"
+  },
+  "name_key": "item.alchemy.crystal_vodka",
+  "lore_key": "item.alchemy.crystal_vodka.lore",
+  "tooltip_key": "item.alchemy.crystal_vodka.tooltip",
+  "effect_text_key": "item.alchemy.crystal_vodka.effects",
+  "brew_time_text_key": "item.alchemy.crystal_vodka.brew_time",
+  "ingredients_text_key": "item.alchemy.crystal_vodka.ingredients",
+  "container_text_key": "item.alchemy.crystal_vodka.container",
+  "rarity_text_key": "item.alchemy.crystal_vodka.rarity",
+  "category_text_key": "item.alchemy.crystal_vodka.category",
+  "flavor_text_key": "item.alchemy.crystal_vodka.flavor",
+  "warning_key": "item.alchemy.crystal_vodka.warning",
+  "crafting_instructions_key": "item.alchemy.crystal_vodka.crafting"
+}

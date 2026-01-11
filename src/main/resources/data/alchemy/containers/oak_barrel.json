@@ -1,0 +1,128 @@
+{
+  "type": "alchemy:container",
+  "id": "alchemy:oak_barrel",
+  "container_kind": "barrel",
+  "stack_size": 1,
+  "rarity": "uncommon",
+  "category": "containers",
+  "durability": {
+    "breakable": true,
+    "max_damage": 250,
+    "fireproof": false,
+    "explosion_resistance": "medium"
+  },
+  "wood": {
+    "wood_type": "oak",
+    "supports_wood_variants": true,
+    "allowed_wood_types": [
+      "oak",
+      "spruce",
+      "birch",
+      "jungle",
+      "acacia",
+      "dark_oak"
+    ],
+    "flavor_bias": "vanilla_oak"
+  },
+  "liquid": {
+    "can_contain_liquid": true,
+    "capacity_mb": 50000,
+    "accepted_tags": ["alchemy:beer", "alchemy:spirit", "alchemy:ageable"],
+    "default_fill_mb": 0,
+    "transfer": {
+      "fill_rate_mb_per_tick": 100,
+      "pour_rate_mb_per_tick": 50,
+      "allow_partial": true
+    }
+  },
+  "seal": {
+    "starts_sealed": false,
+    "reopenable": true,
+    "seal_quality": "good",
+    "leak_chance_per_minute_open": 0.001,
+    "oxidation_multiplier_open": 2.0,
+    "spoilage_multiplier_open": 1.5
+  },
+  "pressure": {
+    "supports_pressure": false,
+    "carbonation_style": "none",
+    "max_pressure": 0.0,
+    "burst": {
+      "enabled": false,
+      "pressure_threshold": 0.0,
+      "drop_contents_on_burst": false,
+      "burst_sound": "minecraft:block.wood.break"
+    }
+  },
+  "temperature": {
+    "insulation_factor": 3.5,
+    "preferred_serving": "cellar",
+    "freezing_safe": true,
+    "heat_safe": false
+  },
+  "barrel_logic": {
+    "aging_rate_multiplier": 1.0,
+    "quality_transfer_rate": 0.01,
+    "wood_flavor_intensity": 0.3,
+    "oxygen_exchange_rate": 0.001,
+    "evaporation_rate_per_day": 0.005
+  },
+  "interaction": {
+    "use_action": "open_ui",
+    "returns_container": true,
+    "return_item_id": "alchemy:oak_barrel",
+    "consume_on_use": false,
+    "consume_on_drink": false,
+    "allow_fill_from": ["alchemy:brewing_stand", "alchemy:fermenter"],
+    "allow_pour_to": ["alchemy:aluminum_can", "alchemy:glass_flask"]
+  },
+  "client": {
+    "render_mode": "block_entity",
+    "liquid_tint_from_content": true,
+    "show_fill_level_tooltip": true,
+    "fill_level_steps": 10
+  },
+  "gates": {
+    "requires_feature_flag": "alchemy:aging",
+    "requires_gamerule_true": "doAlchemyBrewing"
+  },
+  "text": {
+    "lore_key": "item.alchemy.oak_barrel.lore",
+    "tooltip_key": "item.alchemy.oak_barrel.tooltip",
+    "flavor_text_key": "item.alchemy.oak_barrel.flavor",
+    "crafting_instructions_key": "item.alchemy.oak_barrel.crafting"
+  },
+  "state_storage": {
+    "mode": "both",
+    "schema_version": 1,
+    "defaults": {
+      "payload": {
+        "content_id": "",
+        "amount_mb": 0,
+        "quality": 0.5,
+        "temperature": "cellar",
+        "pressure": 0.0,
+        "sealed": false,
+        "created_time": 0
+      }
+    },
+    "item_nbt": {
+      "enabled": true,
+      "nbt_root": "AlchemyData",
+      "payload_key": "Container",
+      "fields": {}
+    },
+    "placed_block": {
+      "enabled": true,
+      "block_id": "alchemy:oak_barrel_block",
+      "block_entity_id": "alchemy:oak_barrel",
+      "sync_to_client": true,
+      "drops_keep_contents": true
+    },
+    "conversion": {
+      "on_place": "copy_to_block",
+      "on_break": "copy_to_item",
+      "merge_strategy": "merge"
+    }
+  }
+}
