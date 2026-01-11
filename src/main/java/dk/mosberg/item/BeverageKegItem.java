@@ -1,9 +1,10 @@
 package dk.mosberg.item;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 import dk.mosberg.data.BeverageData;
+import dk.mosberg.data.ContainerData;
 import dk.mosberg.effect.BeverageEffectManager;
-import dk.mosberg.registry.ModItems;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,27 +17,30 @@ import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 
 /**
- * A consumable beverage item that grants status effects when drunk. Returns an empty aluminum keg
- * after consumption.
+ * Alternate beverage form with keg-sized stacks. Behavior mirrors BeverageCanItem but uses the
+ * keg's stack size and container return item.
  */
 public class BeverageKegItem extends Item {
     private final BeverageData data;
+    private final ContainerData containerData;
+    private final Item returnItem;
 
-    /**
-     * Creates a new beverage can item with the specified beverage data.
-     *
-     * @param data the beverage definition containing effects and properties
-     */
-    public BeverageKegItem(BeverageData data) {
+    public BeverageKegItem(BeverageData data, ContainerData containerData, Item returnItem) {
         super(new Item.Settings()
                 .registryKey(net.minecraft.registry.RegistryKey
                         .of(net.minecraft.registry.RegistryKeys.ITEM, data.id()))
-                .maxCount(16).food(BeverageEffectManager.toFoodComponent(data)));
-        this.data = data;
+                .maxCount(data.stackSize()).food(BeverageEffectManager.toFoodComponent(data)));
+        this.data = Objects.requireNonNull(data, "data");
+        this.containerData = containerData;
+        this.returnItem = returnItem;
     }
 
     @Override
     public UseAction getUseAction(ItemStack stack) {
+        if (containerData != null && containerData.interaction() != null
+                && containerData.interaction().useAction() != null) {
+            return containerData.interaction().useAction();
+        }
         return UseAction.DRINK;
     }
 
@@ -50,18 +54,15 @@ public class BeverageKegItem extends Item {
         ItemStack result = super.finishUsing(stack, world, user);
 
         if (!world.isClient()) {
-            user.addStatusEffect(data.effectInstance());
+            data.applyEffects(user::addStatusEffect, world.getRandom());
 
-            // Return empty aluminum keg to player inventory
-            if (user instanceof PlayerEntity player) {
-                if (!player.isCreative()) {
-                    ItemStack container = new ItemStack(ModItems.ALUMINUM_KEG);
-                    if (stack.isEmpty()) {
-                        return container;
-                    }
-                    if (!player.getInventory().insertStack(container)) {
-                        player.dropItem(container, false);
-                    }
+            if (user instanceof PlayerEntity player && returnItem != null && !player.isCreative()) {
+                ItemStack container = new ItemStack(returnItem);
+                if (stack.isEmpty()) {
+                    return container;
+                }
+                if (!player.getInventory().insertStack(container)) {
+                    player.dropItem(container, false);
                 }
             }
         }
@@ -73,25 +74,28 @@ public class BeverageKegItem extends Item {
     public void appendTooltip(ItemStack stack, Item.TooltipContext context,
             TooltipDisplayComponent displayComponent, Consumer<Text> textConsumer,
             TooltipType type) {
-        textConsumer
-                .accept(Text.translatable(data.translationKey("desc")).formatted(Formatting.GRAY));
-        textConsumer.accept(
-                Text.translatable(data.translationKey("effect")).formatted(Formatting.GOLD));
-        textConsumer.accept(Text.translatable(data.translationKey("ingredients"))
-                .formatted(Formatting.DARK_GREEN));
-        textConsumer.accept(
-                Text.translatable(data.translationKey("brew_time")).formatted(Formatting.BLUE));
-        textConsumer.accept(
-                Text.translatable(data.translationKey("warning")).formatted(Formatting.DARK_RED));
-        textConsumer.accept(Text.translatable(data.translationKey("flavor_text"))
-                .formatted(Formatting.ITALIC, Formatting.DARK_GRAY));
+        var keys = data.textKeys();
+
+        addText(textConsumer, keys != null ? keys.lore() : null, data.translationKey("lore"),
+                Formatting.GRAY);
+        addText(textConsumer, keys != null ? keys.effect() : null, data.translationKey("effects"),
+                Formatting.GOLD);
+        addText(textConsumer, keys != null ? keys.ingredients() : null,
+                data.translationKey("ingredients"), Formatting.DARK_GREEN);
+        addText(textConsumer, keys != null ? keys.brewTime() : null,
+                data.translationKey("brew_time"), Formatting.BLUE);
+        addText(textConsumer, keys != null ? keys.warning() : null, data.translationKey("warning"),
+                Formatting.DARK_RED);
+        addText(textConsumer, keys != null ? keys.flavor() : null,
+                data.translationKey("flavor_text"), Formatting.ITALIC, Formatting.DARK_GRAY);
     }
 
-    /**
-     * Returns the beverage data associated with this can.
-     *
-     * @return the beverage data
-     */
+    private static void addText(Consumer<Text> consumer, String explicitKey, String fallbackKey,
+            Formatting... formatting) {
+        String key = explicitKey != null && !explicitKey.isBlank() ? explicitKey : fallbackKey;
+        consumer.accept(Text.translatable(key).formatted(formatting));
+    }
+
     public BeverageData getData() {
         return data;
     }

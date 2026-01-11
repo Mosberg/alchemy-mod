@@ -2,6 +2,7 @@ package dk.mosberg;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import dk.mosberg.data.ContentPack;
 import dk.mosberg.data.DataLoader;
 import dk.mosberg.registry.ModEffects;
 import dk.mosberg.registry.ModItemGroups;
@@ -22,12 +23,11 @@ public class Alchemy implements ModInitializer {
     @Override
     public void onInitialize() {
         // Load data-driven definitions first before item registration
-        DataLoader.loadBeverages();
-        DataLoader.loadContainers();
+        ContentPack content = DataLoader.loadAll();
 
         // Register game content
         ModEffects.register();
-        ModItems.register();
+        ModItems.register(content);
         ModItemGroups.register();
 
         LOGGER.info("{} initialized successfully.", MOD_ID);

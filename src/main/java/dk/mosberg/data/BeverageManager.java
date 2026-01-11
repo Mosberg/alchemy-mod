@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 
 /**
@@ -18,27 +17,17 @@ public final class BeverageManager {
     private BeverageManager() {}
 
     /**
-     * Registers a new beverage definition with the given properties.
-     *
-     * @param id the unique identifier for this beverage
-     * @param effect the status effect to apply when consumed
-     * @param durationTicks duration of the effect in game ticks
-     * @param amplifier the amplifier level (0-based)
-     * @param hunger hunger points restored
-     * @param saturation saturation modifier
-     * @return the registered BeverageData instance
-     * @throws NullPointerException if effect is null
+     * Registers a new beverage definition.
      */
-    public static BeverageData register(Identifier id,
-            RegistryEntry<net.minecraft.entity.effect.StatusEffect> effect, int durationTicks,
-            int amplifier, int hunger, float saturation) {
-        Objects.requireNonNull(id, "Beverage id cannot be null");
-        Objects.requireNonNull(effect, "Status effect cannot be null");
-
-        BeverageData data =
-                new BeverageData(id, effect, durationTicks, amplifier, hunger, saturation);
-        BEVERAGES.put(id, data);
+    public static BeverageData register(BeverageData data) {
+        Objects.requireNonNull(data, "Beverage data cannot be null");
+        BEVERAGES.put(data.id(), data);
         return data;
+    }
+
+    /** Registers all beverages from the provided collection. */
+    public static void registerAll(Collection<BeverageData> beverages) {
+        beverages.forEach(BeverageManager::register);
     }
 
     /**
