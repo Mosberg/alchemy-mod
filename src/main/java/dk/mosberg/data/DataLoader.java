@@ -30,12 +30,22 @@ public final class DataLoader {
      * Load all alcohol definitions from classpath resources.
      */
     public static void loadBeverages() {
+        String[] containerIds = {"aluminum_can", "aluminum_keg"};
+
         String[] beerIds = {"coppercap_lager", "frostmarsh_pils", "emberhold_amber_ale",
                 "sunvale_golden_pale", "stormwake_session_ipa", "blackvault_stout",
                 "thornveil_herbal_ale", "ropesend_dockside_brew"};
 
         String[] spiritIds = {"chorus_bloom_gin", "dune_mirage_rum", "frostpetal_schnapps",
                 "hollowshade_absinthe", "scarabgold_brandy", "soulflame_spirit"};
+
+        for (String id : containerIds) {
+            try {
+                loadContainer(id);
+            } catch (Exception e) {
+                Alchemy.LOGGER.error("Failed to load container definition: {}", id, e);
+            }
+        }
 
         for (String id : beerIds) {
             try {
@@ -108,8 +118,7 @@ public final class DataLoader {
         int hunger = 4;
         float saturation = 0.6F;
 
-        BeverageData data =
-                BeverageManager.register(id, effect, durationTicks, amplifier, hunger, saturation);
+        BeverageManager.register(id, effect, durationTicks, amplifier, hunger, saturation);
         Alchemy.LOGGER.info("Loaded beverage definition: {} (stack size: {})", id, stackSize);
     }
 
