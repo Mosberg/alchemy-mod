@@ -16,10 +16,10 @@ import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 
 /**
- * A consumable beverage item that grants status effects when drunk. Returns an empty aluminum can
+ * A consumable beverage item that grants status effects when drunk. Returns an empty aluminum keg
  * after consumption.
  */
-public class BeverageCanItem extends Item {
+public class BeverageKegItem extends Item {
     private final BeverageData data;
 
     /**
@@ -27,11 +27,11 @@ public class BeverageCanItem extends Item {
      *
      * @param data the beverage definition containing effects and properties
      */
-    public BeverageCanItem(BeverageData data) {
+    public BeverageKegItem(BeverageData data) {
         super(new Item.Settings()
                 .registryKey(net.minecraft.registry.RegistryKey
                         .of(net.minecraft.registry.RegistryKeys.ITEM, data.id()))
-                .maxCount(64).food(BeverageEffectManager.toFoodComponent(data)));
+                .maxCount(16).food(BeverageEffectManager.toFoodComponent(data)));
         this.data = data;
     }
 
@@ -52,10 +52,10 @@ public class BeverageCanItem extends Item {
         if (!world.isClient()) {
             user.addStatusEffect(data.effectInstance());
 
-            // Return empty aluminum can to player inventory
+            // Return empty aluminum keg to player inventory
             if (user instanceof PlayerEntity player) {
                 if (!player.isCreative()) {
-                    ItemStack container = new ItemStack(ModItems.ALUMINUM_CAN);
+                    ItemStack container = new ItemStack(ModItems.ALUMINUM_KEG);
                     if (stack.isEmpty()) {
                         return container;
                     }
